@@ -91,12 +91,21 @@ app.get('/pull', function (req, res) {
 });
 
 app.get('/install', function (req, res) {
-	var file = req.query.zip;
-	console.log('install app,%s', file);
+	var file = req.query.zip
+		, folder = req.query.folder;
+	console.log('install app,%s,%s', file, folder);
 	try {
-		am.install(file, function (app) {
-			res.send(app);
-		});
+		if (file) {
+			am.install(file, function (app) {
+				res.send(app);
+			});
+		} else if (folder) {
+			am.installFolder(folder, function (app) {
+				res.send(app);
+			});
+		} else {
+			res.send(400, {msg: 'invalid request'});
+		}
 	} catch (err) {
 		console.log('error,%s', err);
 		res.send(500, {msg: err});
@@ -147,7 +156,7 @@ app.get('/uninstall', function (req, res) {
 var user_data = {};
 
 app.post("/exercise/v1/user_data/*", function (req, res) {
-	var accessToken = req.headers['access-token'];
+	var accessToken = req.headers['access-token'] || 'test';
 	console.log("save user data(" + accessToken + "," + req.path + ")");
 
 	var result = udm.putData(accessToken, req.path, JSON.stringify(req.body));
@@ -155,7 +164,7 @@ app.post("/exercise/v1/user_data/*", function (req, res) {
 });
 
 app.get("/exercise/v1/user_data/*", function (req, res) {
-	var accessToken = req.headers['access-token'];
+	var accessToken = req.headers['access-token'] || 'test';
 	console.log("fetch user data(" + accessToken + "," + req.path + "),");
 	var result = udm.getData(accessToken, req.path);
 	res.send(result || {});

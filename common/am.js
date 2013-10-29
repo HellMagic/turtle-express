@@ -91,17 +91,11 @@ exports.init = function (appBase, downloadBase) {
 		console.log('app loaded,%s', JSON.stringify(app));
 	});
 
-	var install = function (zipfile, cb) {
-		console.log('install,%s', zipfile);
-		if (!fs.existsSync(zipfile)) {
-			throw "no such zip file," + zipfile;
+	var installFolder = function (dirPath, cb) {
+		console.log('install folder,%s', dirPath);
+		if (!fs.existsSync(dirPath)) {
+			throw "folder not exists," + dirPath;
 		}
-
-		var dirPath = temp.mkdirSync('appparser');
-		var zip = new admzip(zipfile);
-		console.log('start extraction,%s,%s', zipfile, dirPath);
-		zip.extractAllTo(dirPath, /*overwrite*/true);
-		console.log("extract completed,%s", dirPath);
 
 		var newApp = parseAppFolder(dirPath);
 		if (typeof newApp === "undefined" ||
@@ -145,11 +139,26 @@ exports.init = function (appBase, downloadBase) {
 			});
 		}
 	};
+
+	var install = function (zipfile, cb) {
+		console.log('install zip,%s', zipfile);
+		if (!fs.existsSync(zipfile)) {
+			throw "no such zip file," + zipfile;
+		}
+
+		var dirPath = temp.mkdirSync('appparser');
+		var zip = new admzip(zipfile);
+		console.log('start extraction,%s,%s', zipfile, dirPath);
+		zip.extractAllTo(dirPath, true);
+		console.log("extract completed,%s", dirPath);
+		installFolder(dirPath, cb);
+	};
+
 	var uninstall = function (appId, cb) {
 		console.log('uninstall,%s', appId);
 		var exists = apps[appId];
 		if (typeof exists != 'undefined') {
-			apps[appId] = undefined;
+			delete apps[appId];
 			fsext.remove(getAppFolder(appId), function () {
 				if (cb) cb(exists);
 			});
@@ -180,6 +189,7 @@ exports.init = function (appBase, downloadBase) {
 
 	return {
 		install: install,
+		installFolder: installFolder,
 		uninstall: uninstall,
 		all: all,
 		getAppById: getAppById,

@@ -20,6 +20,7 @@ exports.init = function (userdataFolder) {
 	}
 
 	var putData = function (user, target, data) {
+		console.log('putdata,%s,%s', JSON.stringify(userdataFolder), JSON.stringify(user));
 		var fileName = base32.encode(target)
 			, userFolder = path.join(userdataFolder, user)
 			, dataFile = path.join(userFolder, fileName);
