@@ -45,7 +45,7 @@ if ('development' == app.get('env')) {
 	app.use(express.errorHandler());
 }
 
-var upstreamServer = "http://127.0.0.1:9461";
+var upstreamServer = "http://cloud.sunshine-library.org:9460";
 var api = API.server(upstreamServer);
 
 var fetchUpstreamDiff = function (cb) {
