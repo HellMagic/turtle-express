@@ -99,7 +99,13 @@ app.post('/upstream', function (req, res) {
 	}
 });
 
-app.get('/', routes.index);
+app.get('/', function (req, res) {
+	if (am.getAppById("0")) {
+		res.redirect("/app/0/index.html");
+	} else {
+		res.send(500, 'no bootstrap app exists');
+	}
+});
 
 app.get('/pull', function (req, res) {
 	fetchUpstreamDiff(function (err, diff) {
