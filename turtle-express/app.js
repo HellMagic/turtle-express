@@ -46,6 +46,7 @@ if ('development' == app.get('env')) {
 }
 
 var upstreamServer = "http://cloud.sunshine-library.org:9460";
+//var upstreamServer = "http://192.168.3.100:9460";
 var api = API.server(upstreamServer);
 
 var fetchUpstreamDiff = function (cb) {
@@ -114,6 +115,30 @@ app.get('/pull', function (req, res) {
 	});
 });
 
+var downloadFile = function (url, dstFile, cb) {
+	http.get(url,function (res) {
+		console.log("begin downloading,%s", url);
+		var writeStream = fs.createWriteStream(dstFile);
+		res.on('data', function (data) {
+			writeStream.write(data);
+		})
+			.on('end', function () {
+				console.log('download completed,%s,%s', dstFile, url);
+				writeStream.end();
+				writeStream.on('finish', function () {
+					if (cb) cb(undefined, dstFile);
+				})
+			})
+			.on('error', function (e) {
+				console.error('download error,%s', url);
+				writeStream.end();
+				if (cb) cb(e);
+			});
+	}).on('error', function (e) {
+			if (cb) cb(e);
+		});
+}
+
 app.get('/sync', function (req, res) {
 	fetchUpstreamDiff(function (err, diff) {
 		if (err) {
@@ -126,13 +151,12 @@ app.get('/sync', function (req, res) {
 			}
 			var info = temp.openSync('turtledl_');
 			console.log('download new app,%s,%s', app.download_url, info.path);
-			var download = request(app.download_url).pipe(fs.createWriteStream(info.path));
-			download.on('error', function () {
-				console.error('download error');
-			});
-			download.on('finish', function () {
-				console.log('download completed,%s,%s' + JSON.stringify(info), app.download_url);
-				am.install(info.path, function (app) {
+			downloadFile(app.download_url, info.path, function (err, file) {
+				if (err) {
+					console.error('download failed,%s', err);
+					return;
+				}
+				am.install(file, function (app) {
 					console.log('new app installed,%s', ((app) ? app.id : 'null'));
 				});
 			});
@@ -144,16 +168,34 @@ app.get('/sync', function (req, res) {
 			}
 			var info = temp.openSync('turtledl_');
 			console.log('download new app,%s,%s', app.download_url, info.path);
-			var download = request(app.download_url).pipe(fs.createWriteStream(info.path));
-			download.on('error', function () {
-				console.error('download error');
-			});
-			download.on('finish', function () {
-				console.log('download completed,%s,%s' + JSON.stringify(info), app.download_url);
-				am.install(info.path, function (app) {
-					console.log('update app installed,%s', ((app) ? app.id : 'null'));
+
+			downloadFile(app.download_url, info.path, function (err, file) {
+				if (err) {
+					console.error('download failed,%s', err);
+					return;
+				}
+				am.install(file, function (app) {
+					console.log('new app installed,%s', ((app) ? app.id : 'null'));
 				});
 			});
+//
+//			http.get(app.download_url, function (res) {
+//				console.log("begin downloading," + app.download_url);
+//				var writeStream = fs.createWriteStream(info.path);
+//				res.pipe(writeStream);
+//				res.on('error', function () {
+//					console.error('download error,%s', app.download_url);
+//				});
+//				res.on('data', function () {
+//					console.log('downloading,%s', app.download_url);
+//				})
+//				writeStream.on('finish', function () {
+//					console.log('download completed,%s,%s' + JSON.stringify(info), app.download_url);
+//					am.install(info.path, function (app) {
+//						console.log('update app installed,%s', ((app) ? app.id : 'null'));
+//					});
+//				})
+//			});
 		});
 		_.each(diff.deleteApps, function (app) {
 			console.log('delete app,%s', JSON.stringify(app));
