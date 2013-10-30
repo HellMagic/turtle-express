@@ -19,6 +19,8 @@ var express = require('express')
 	, _ = require('underscore');
 _.mixin(_str.exports());
 
+temp.track();
+
 var APP_BASE = 'app'
 	, DOWNLOAD_BASE = 'dl'
 	, USERDATA_BASE = 'userdata'
@@ -47,6 +49,8 @@ if ('development' == app.get('env')) {
 
 var upstreamServer = "http://cloud.sunshine-library.org:9460";
 //var upstreamServer = "http://192.168.3.100:9460";
+console.log("upstream server:" + upstreamServer);
+
 var api = API.server(upstreamServer);
 
 var fetchUpstreamDiff = function (cb) {
@@ -115,19 +119,20 @@ app.get('/pull', function (req, res) {
 	});
 });
 
-var downloadFile = function (url, dstFile, cb) {
+var downloadFile = function (url, cb) {
+	var dstFile = temp.path({prefix: 'turtledl_'});
 	http.get(url,function (res) {
-		console.log("begin downloading,%s", url);
+		console.log("begin downloading,%s,%s", url, dstFile);
 		var writeStream = fs.createWriteStream(dstFile);
 		res.on('data', function (data) {
 			writeStream.write(data);
 		})
 			.on('end', function () {
 				console.log('download completed,%s,%s', dstFile, url);
-				writeStream.end();
 				writeStream.on('finish', function () {
 					if (cb) cb(undefined, dstFile);
 				})
+				writeStream.end();
 			})
 			.on('error', function (e) {
 				console.error('download error,%s', url);
@@ -149,9 +154,8 @@ app.get('/sync', function (req, res) {
 			if (!_(app.download_url).startsWith('http://')) {
 				app.download_url = upstreamServer + app.download_url;
 			}
-			var info = temp.openSync('turtledl_');
-			console.log('download new app,%s,%s', app.download_url, info.path);
-			downloadFile(app.download_url, info.path, function (err, file) {
+			console.log('download new app,%s,%s', app.download_url);
+			downloadFile(app.download_url, function (err, file) {
 				if (err) {
 					console.error('download failed,%s', err);
 					return;
@@ -169,7 +173,7 @@ app.get('/sync', function (req, res) {
 			var info = temp.openSync('turtledl_');
 			console.log('download new app,%s,%s', app.download_url, info.path);
 
-			downloadFile(app.download_url, info.path, function (err, file) {
+			downloadFile(app.download_url, function (err, file) {
 				if (err) {
 					console.error('download failed,%s', err);
 					return;
