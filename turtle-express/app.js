@@ -83,7 +83,17 @@ var fetchUpstreamDiff = function (cb) {
 };
 
 app.post('/upstream', function (req, res) {
-
+	var upstream = req.query.server;
+	if (typeof upstream === "undefined") {
+		res.send(400, {msg: "invalid request"});
+	} else {
+		try {
+			url.parse(upstream);
+			upstreamServer = upstream;
+		} catch (error) {
+			res.send(400, {msg: "invalid server"});
+		}
+	}
 });
 
 app.get('/', routes.index);

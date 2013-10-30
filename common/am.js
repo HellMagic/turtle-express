@@ -9,7 +9,6 @@
 var _ = require("underscore")
 	, _str = require("underscore.string")
 	, fs = require("fs")
-	, unzip = require("unzip")
 	, path = require('path')
 	, dive = require('dive')
 	, fsext = require('fs-extra')
