@@ -239,10 +239,18 @@ app.get("/exercise/v1/user_data/*", function (req, res) {
 	res.send(result || {});
 });
 
-app.post("/", function (req, res) {
-	console.log("got a unrecognized user data," + JSON.stringify(req.body));
-	user_data[req.url] = req.body;
-	res.send(user_data[req.url]);
+app.post("/user_data/*", function (req, res) {
+	var accessToken = req.headers['access-token'] || 'test';
+	console.log("save user data(" + accessToken + "," + req.path + ")");
+	var result = udm.putData(accessToken, req.path, JSON.stringify(req.body));
+	res.send(result);
+});
+
+app.get("/user_data/*", function (req, res) {
+	var accessToken = req.headers['access-token'] || 'test';
+	console.log("fetch user data(" + accessToken + "," + req.path + "),");
+	var result = udm.getData(accessToken, req.path);
+	res.send(result || {});
 });
 
 http.createServer(app).listen(app.get('port'), function () {
