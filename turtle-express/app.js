@@ -7,6 +7,7 @@ var express = require('express')
 	, routes = require('./routes')
 	, user = require('./routes/user')
 	, http = require('http')
+	, url = require('url')
 	, request = require('request')
 	, AM = require('../common/am')
 	, UDM = require('../common/udm')
@@ -90,8 +91,10 @@ app.post('/upstream', function (req, res) {
 		try {
 			url.parse(upstream);
 			upstreamServer = upstream;
+			api = API.server(upstreamServer);
+			res.send({msg: 'upstream changed to,' + upstream});
 		} catch (error) {
-			res.send(400, {msg: "invalid server"});
+			res.send(400, {msg: "invalid server," + error});
 		}
 	}
 });
@@ -111,7 +114,6 @@ app.get('/sync', function (req, res) {
 			res.send(500, {msg: err});
 			return;
 		}
-		res.send(diff);
 		_.each(diff.newApps, function (app) {
 			if (!_(app.download_url).startsWith('http://')) {
 				app.download_url = upstreamServer + app.download_url;
@@ -153,6 +155,7 @@ app.get('/sync', function (req, res) {
 				console.log('app deleted,%s', app.id);
 			})
 		});
+		res.send(diff);
 	});
 });
 
