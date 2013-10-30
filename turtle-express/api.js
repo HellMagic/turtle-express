@@ -11,8 +11,8 @@ exports.server = function (server) {
 	var downloadBase = "/dl";
 	var appBase = "/app";
 	return {
-		all: server + "/apps.json",
-		query: server + "/apps.json",
+		all: server + "/apps",
+		query: server + "/apps",
 		downloadBase: downloadBase,
 		appBase: appBase,
 		download: function (appId, versionCode) {

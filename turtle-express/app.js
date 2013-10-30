@@ -14,6 +14,7 @@ var express = require('express')
 	, path = require('path')
 	, _str = require('underscore.string')
 	, ip = require('ip')
+	, temp = require('temp')
 	, _ = require('underscore');
 _.mixin(_str.exports());
 
@@ -43,7 +44,7 @@ if ('development' == app.get('env')) {
 	app.use(express.errorHandler());
 }
 
-var upstreamServer = "http://127.0.0.1:3002";
+var upstreamServer = "http://127.0.0.1:9461";
 var api = API.server(upstreamServer);
 
 var fetchUpstreamDiff = function (cb) {
@@ -81,12 +82,67 @@ var fetchUpstreamDiff = function (cb) {
 	});
 };
 
+app.post('/upstream', function (req, res) {
+
+});
+
 app.get('/', routes.index);
 
 app.get('/pull', function (req, res) {
 	fetchUpstreamDiff(function (err, diff) {
-		console.log('diff:' + JSON.stringify(diff));
+		console.log('diff,%s', JSON.stringify(diff));
 		res.send(diff);
+	});
+});
+
+app.get('/sync', function (req, res) {
+	fetchUpstreamDiff(function (err, diff) {
+		if (err) {
+			res.send(500, {msg: err});
+			return;
+		}
+		res.send(diff);
+		_.each(diff.newApps, function (app) {
+			if (!_(app.download_url).startsWith('http://')) {
+				app.download_url = upstreamServer + app.download_url;
+			}
+			var info = temp.openSync('turtledl_');
+			console.log('download new app,%s,%s', app.download_url, info.path);
+			var download = request(app.download_url).pipe(fs.createWriteStream(info.path));
+			download.on('error', function () {
+				console.error('download error');
+			});
+			download.on('finish', function () {
+				console.log('download completed,%s,%s' + JSON.stringify(info), app.download_url);
+				am.install(info.path, function (app) {
+					console.log('new app installed,%s', ((app) ? app.id : 'null'));
+				});
+			});
+		});
+		_.each(diff.updateApps, function (app) {
+			console.log('update app,%s', JSON.stringify(app));
+			if (!_(app.download_url).startsWith('http://')) {
+				app.download_url = upstreamServer + app.download_url;
+			}
+			var info = temp.openSync('turtledl_');
+			console.log('download new app,%s,%s', app.download_url, info.path);
+			var download = request(app.download_url).pipe(fs.createWriteStream(info.path));
+			download.on('error', function () {
+				console.error('download error');
+			});
+			download.on('finish', function () {
+				console.log('download completed,%s,%s' + JSON.stringify(info), app.download_url);
+				am.install(info.path, function (app) {
+					console.log('update app installed,%s', ((app) ? app.id : 'null'));
+				});
+			});
+		});
+		_.each(diff.deleteApps, function (app) {
+			console.log('delete app,%s', JSON.stringify(app));
+			am.uninstall(app.id, function (app) {
+				console.log('app deleted,%s', app.id);
+			})
+		});
 	});
 });
 
