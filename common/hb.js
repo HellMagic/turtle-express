@@ -81,7 +81,6 @@ exports.server = function (host, port/*, net*/) {
                 var msg;
                 buf += data.toString();
                 split = buf.indexOf('\n');
-                console.log('receive message,%s', socket.remoteAddress);
                 while (split > -1) {
                     try {
                         var message = buf.substring(0, split);
