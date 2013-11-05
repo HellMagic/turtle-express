@@ -30,7 +30,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 
-var TURTLE_DIRECTORY_HOST = '127.0.0.1'
+var TURTLE_DIRECTORY_HOST = 'cloud.sunshine-library.org'
     , TURTLE_DIRECTORY_PORT = 9461;
 
 // start server with default values

@@ -13,7 +13,6 @@ exports.client = function (host, port, getServiceInfo) {
 
     pulse = function (socket) {
         var serverinfo = getServiceInfo();
-        console.log('pulse:%s', serverinfo);
         socket.write(serverinfo, "utf8");
         socket.write('\n', "utf8");
     };
@@ -92,12 +91,14 @@ exports.server = function (host, port/*, net*/) {
                             console.log('invalid node,no id in pulse');
                             return;
                         }
-                        clients[msg.id] = {
+                        var newClient = {
                             'id': id,
                             'addr': socket.remoteAddress,
                             'hbtime': new Date().getTime(),
                             'socket': socket
                         };
+                        clients[msg.id] = newClient;
+                        console.log('new client,%s,%s', newClient.id, newClient.addr);
                         buf = buf.substring(split + 1); // Cuts off the processed chunk
                         split = buf.indexOf('\n'); // Find the new delimiter
                     } catch (error) {
@@ -108,7 +109,6 @@ exports.server = function (host, port/*, net*/) {
                         split = 0;
                     }
                 }
-                console.log('client report processed');
             };
             socket.setEncoding("utf8");
             socket.on("data", got_data);
