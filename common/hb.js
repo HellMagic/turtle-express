@@ -15,6 +15,7 @@ exports.client = function (host, port, getServiceInfo) {
         var serverinfo = getServiceInfo();
         console.log('pulse:%s', serverinfo);
         socket.write(serverinfo, "utf8");
+        socket.write('\n', "utf8");
     };
 
     connect = function (net_interface) {
@@ -74,21 +75,40 @@ exports.server = function (host, port/*, net*/) {
 
     start_server = function () {
         net_interface.createServer(function (socket) {
-            var id;
+            var id
+                , buf = ""
+                , split = 0;
             var got_data = function (data) {
-                var pulse = JSON.parse(data);
-                id = pulse.id;
-                if (!id) {
-                    console.log('invalid node,no id in pulse');
-                    return;
+                var msg;
+                buf += data.toString();
+                split = buf.indexOf('\n');
+                console.log('receive message,%s', socket.remoteAddress);
+                while (split > -1) {
+                    try {
+                        var message = buf.substring(0, split);
+                        msg = JSON.parse(message);
+                        id = msg.id;
+                        if (!id) {
+                            console.log('invalid node,no id in pulse');
+                            return;
+                        }
+                        clients[msg.id] = {
+                            'id': id,
+                            'addr': socket.remoteAddress,
+                            'hbtime': new Date().getTime(),
+                            'socket': socket
+                        };
+                        buf = buf.substring(split + 1); // Cuts off the processed chunk
+                        split = buf.indexOf('\n'); // Find the new delimiter
+                    } catch (error) {
+                        console.log('heart beat proto failed,%s', error);
+                        socket.end();
+                        delete clients[id];
+                        buf = "";
+                        split = 0;
+                    }
                 }
-                console.log('get from client,%s,%s', socket.remoteAddress, JSON.stringify(pulse));
-                clients[pulse.id] = {
-                    'id': id,
-                    'addr': socket.remoteAddress,
-                    'hbtime': new Date().getTime(),
-                    'socket': socket
-                };
+                console.log('client report processed');
             };
             socket.setEncoding("utf8");
             socket.on("data", got_data);

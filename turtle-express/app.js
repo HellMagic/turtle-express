@@ -29,11 +29,12 @@ var APP_BASE = 'app'
     , am = AM.init(APP_BASE, DOWNLOAD_BASE)
     , udm = UDM.init(USERDATA_BASE)
     , SERVICE_ID_FILE = 'service_info'
-    , TURTLE_DIRECTORY_HOST = '127.0.0.1'
-//    , TURTLE_DIRECTORY_HOST = 'cloud.sunshine-library.org'
+//    , TURTLE_DIRECTORY_HOST = '127.0.0.1'
+    , TURTLE_DIRECTORY_HOST = 'cloud.sunshine-library.org'
     , TURTLE_DIRECTORY_PORT = 9461;
 
 // start heat beat connection
+console.log("heart beat server:%s:%s", TURTLE_DIRECTORY_HOST, TURTLE_DIRECTORY_PORT);
 if (!fs.existsSync(SERVICE_ID_FILE)) {
     serverInfo = {id: uuid.v4()};
     fs.writeFileSync(SERVICE_ID_FILE, JSON.stringify(serverInfo), 'utf8');
