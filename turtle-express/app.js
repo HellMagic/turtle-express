@@ -29,7 +29,7 @@ var APP_BASE = 'app'
     , am = AM.init(APP_BASE, DOWNLOAD_BASE)
     , udm = UDM.init(USERDATA_BASE)
     , SERVICE_ID_FILE = 'service_info'
-    , TURTLE_DIRECTORY_HOST = 'http://cloud.sunshine-library.org:9461'
+    , TURTLE_DIRECTORY_HOST = 'http://cloud.sunshine-library.org'
     , TURTLE_DIRECTORY_PORT = 6688;
 
 // start heat beat connection
@@ -40,7 +40,7 @@ if (!fs.existsSync(SERVICE_ID_FILE)) {
 hb.client(TURTLE_DIRECTORY_HOST, TURTLE_DIRECTORY_PORT, SERVICE_ID_FILE);
 
 var app = express()
-    , PORT = process.env.PORT || 9460;
+    , PORT = process.env.PORT || 80;
 console.log("I'm " + ip.address() + ":" + PORT);
 
 // all environments
