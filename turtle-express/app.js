@@ -29,8 +29,9 @@ var APP_BASE = 'app'
     , am = AM.init(APP_BASE, DOWNLOAD_BASE)
     , udm = UDM.init(USERDATA_BASE)
     , SERVICE_ID_FILE = 'service_info'
-    , TURTLE_DIRECTORY_HOST = 'http://cloud.sunshine-library.org'
-    , TURTLE_DIRECTORY_PORT = 6688;
+//    , TURTLE_DIRECTORY_HOST = 'http://cloud.sunshine-library.org'
+    , TURTLE_DIRECTORY_HOST = 'cloud.sunshine-library.org'
+    , TURTLE_DIRECTORY_PORT = 9461;
 
 // start heat beat connection
 if (!fs.existsSync(SERVICE_ID_FILE)) {

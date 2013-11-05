@@ -30,9 +30,11 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 
+var TURTLE_DIRECTORY_HOST = '127.0.0.1'
+    , TURTLE_DIRECTORY_PORT = 9461;
 
 // start server with default values
-var server = hb.server();
+var server = hb.server(TURTLE_DIRECTORY_HOST, TURTLE_DIRECTORY_PORT);
 
 setInterval(function () {
         server.broadcast();
@@ -41,7 +43,7 @@ setInterval(function () {
             delete zombie;
         });
     },
-    2 * 1000);
+    15 * 1000);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));

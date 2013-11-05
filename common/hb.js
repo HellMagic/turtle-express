@@ -15,23 +15,21 @@ exports.client = function (host, port, serviceFile) {
 
     connect = function (net_interface) {
         socket = net_interface.createConnection(port, host);
-        socket.on("data", function (data) {
-            console.log('get from server,%s', data);
-        });
         socket.on("error", function (x) {
-            console.log("cant connect. try again");
+            console.log("cant connect. try again, %s:%s", host, port);
             setTimeout(function () {
                 connect(net);
-            }, 3 * 1000);
+            }, 60 * 1000);
         });
-        socket.on("data", function () {
+        socket.on("data", function (data) {
+            console.log('get from server,%s', data);
             pulse(socket);
         });
         socket.on('end', function () {
             console.log('socket end');
             setTimeout(function () {
                 connect(net);
-            }, 3 * 1000);
+            }, 60 * 1000);
         });
         pulse(socket);
     };
@@ -78,6 +76,7 @@ exports.server = function (host, port/*, net*/) {
             socket.setEncoding("utf8");
             socket.on("data", got_data);
         }).listen(port, host);
+        console.log('heart beat listen on,%s:%s', host, port);
     };
 
     /*send heartbeat message to many clients*/
