@@ -4,11 +4,15 @@
 var net = require("net")
     , fs = require('fs');
 
-exports.client = function (host, port, serviceFile) {
+exports.client = function (host, port, getServiceInfo) {
     var pulse, connect, socket;
 
+    if (!getServiceInfo) {
+        throw "no service provider";
+    }
+
     pulse = function (socket) {
-        var serverinfo = fs.readFileSync(serviceFile, 'utf8');
+        var serverinfo = getServiceInfo();
         console.log('pulse:%s', serverinfo);
         socket.write(serverinfo, "utf8");
     };
@@ -36,26 +40,33 @@ exports.client = function (host, port, serviceFile) {
     connect(net);
 
     return {
-        'pulse': pulse,
-        'connect': connect
+        pulse: pulse,
+        connect: connect
     };
 }; // client
 
 exports.server = function (host, port/*, net*/) {
-    var net_interface = net, clients = [], zombies = [];
-    var find_zombies, start_server, ask_many, broadcast;
+    var net_interface = net
+        , clients = {}
+        , zombies = []
+        , find_zombies
+        , start_server
+        , ask_many
+        , broadcast
+        , getClients;
     // detect dead machines
     find_zombies = function (period, zombie_callback) {
         var zombies = [], limit = new Date().getTime() - period;
         if (period === undefined || period === null) {
             period = 60 * 1000; // default is 60 seconds of tolerance between pulses
         }
-        for (idx in clients) {
-            var last_seen = clients[idx];
-            if (last_seen.hbtime < limit) {
-                zombie_callback(last_seen);
-                zombies.push(last_seen);
-                delete clients[idx];
+        var c;
+        for (var id in clients) {
+            c = clients[id];
+            if (c.hbtime < limit) {
+                zombie_callback(c);
+                zombies.push(c);
+                delete clients[id];
             }
         }
         return zombies;
@@ -63,11 +74,17 @@ exports.server = function (host, port/*, net*/) {
 
     start_server = function () {
         net_interface.createServer(function (socket) {
+            var id;
             var got_data = function (data) {
                 var pulse = JSON.parse(data);
+                id = pulse.id;
+                if (!id) {
+                    console.log('invalid node,no id in pulse');
+                    return;
+                }
                 console.log('get from client,%s,%s', socket.remoteAddress, JSON.stringify(pulse));
                 clients[pulse.id] = {
-                    'id': pulse.id,
+                    'id': id,
                     'addr': socket.remoteAddress,
                     'hbtime': new Date().getTime(),
                     'socket': socket
@@ -75,17 +92,25 @@ exports.server = function (host, port/*, net*/) {
             };
             socket.setEncoding("utf8");
             socket.on("data", got_data);
+            socket.on('end', function () {
+                delete clients[id];
+            });
         }).listen(port, host);
         console.log('heart beat listen on,%s:%s', host, port);
     };
 
     /*send heartbeat message to many clients*/
-    ask_many = function (clients) {
+    ask_many = function () {
         var c;
-        for (var idx in clients) {
-            c = clients[idx];
+        for (var id in clients) {
+            c = clients[id];
+            console.log('ask client %s,%s', c.id, c.addr);
             try {
-                c.socket.write("are u alive");
+                if (c.socket.writable) {
+                    c.socket.write("show me the money");
+                } else {
+                    console.log('cannot send to client,%s', c.id);
+                }
             } catch (x) {
                 console.log("couldnt send message to: " + c.id + " waiting for it to die");
             }
@@ -94,7 +119,7 @@ exports.server = function (host, port/*, net*/) {
 
     /*broadcast heartbeat message*/
     broadcast = function () {
-        ask_many(clients);
+        ask_many();
     };
 
     if (arguments[2] !== undefined) {
@@ -112,10 +137,10 @@ exports.server = function (host, port/*, net*/) {
     start_server();
 
     return {
-        'find_zombies': find_zombies,
-        'ask_many': ask_many,
-        'broadcast': broadcast,
-        'clients': clients,
-        'zombies': zombies
+        find_zombies: find_zombies,
+        ask_many: ask_many,
+        broadcast: broadcast,
+        clients: clients,
+        zombies: zombies
     };
 }; // server

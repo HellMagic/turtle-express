@@ -29,8 +29,8 @@ var APP_BASE = 'app'
     , am = AM.init(APP_BASE, DOWNLOAD_BASE)
     , udm = UDM.init(USERDATA_BASE)
     , SERVICE_ID_FILE = 'service_info'
-//    , TURTLE_DIRECTORY_HOST = 'http://cloud.sunshine-library.org'
-    , TURTLE_DIRECTORY_HOST = 'cloud.sunshine-library.org'
+    , TURTLE_DIRECTORY_HOST = '127.0.0.1'
+//    , TURTLE_DIRECTORY_HOST = 'cloud.sunshine-library.org'
     , TURTLE_DIRECTORY_PORT = 9461;
 
 // start heat beat connection
@@ -38,7 +38,11 @@ if (!fs.existsSync(SERVICE_ID_FILE)) {
     serverInfo = {id: uuid.v4()};
     fs.writeFileSync(SERVICE_ID_FILE, JSON.stringify(serverInfo), 'utf8');
 }
-hb.client(TURTLE_DIRECTORY_HOST, TURTLE_DIRECTORY_PORT, SERVICE_ID_FILE);
+hb.client(TURTLE_DIRECTORY_HOST, TURTLE_DIRECTORY_PORT, function () {
+    var serviceInfo = JSON.parse(fs.readFileSync(SERVICE_ID_FILE, 'utf8'));
+    serviceInfo.apps = am.all();
+    return JSON.stringify(serviceInfo);
+});
 
 var app = express()
     , PORT = process.env.PORT || 9460;

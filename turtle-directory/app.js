@@ -43,7 +43,16 @@ setInterval(function () {
             delete zombie;
         });
     },
-    15 * 1000);
+    30 * 1000);
+
+app.get('/clients', function (req, res) {
+    var clients = server.clients;
+    res.send(Object.keys(clients));
+});
+
+app.get('/broadcast', function (req, res) {
+    res.send(server.broadcast());
+});
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
