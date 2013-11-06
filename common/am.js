@@ -123,7 +123,7 @@ exports.init = function (appBase, downloadBase) {
             });
         } else {
             fsext.remove(appFolder, function () {
-                fs.copy(dirPath, appFolder, function () {
+                fsext.copy(dirPath, appFolder, function () {
                     console.log("complete upgrade," + dirPath);
                     if (fs.existsSync(appFile)) {
                         console.log('app file already exists,%s', appFile);
