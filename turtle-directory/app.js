@@ -47,6 +47,10 @@ setInterval(function () {
 
 app.get('/clients', function (req, res) {
     var clients = server.clients;
+    for (var key in Object.keys(clients)) {
+        var client = clients[key];
+        console.log('client:%s',client.addr);
+    }
     res.send(Object.keys(clients));
 });
 

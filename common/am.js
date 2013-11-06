@@ -113,7 +113,7 @@ exports.init = function (appBase, downloadBase) {
             , appFile = getAppFile(newApp);
         newApp.download_url = '/' + downloadBase + '/' + getAppUniqId(newApp) + '.wpk';
         if (typeof exists === "undefined") {
-            fs.rename(dirPath, appFolder, function () {
+            fsext.copy(dirPath, appFolder, function () {
                 console.log("complete install," + dirPath);
                 packApp(appFolder, fstream.Writer(appFile), function (bytes) {
                     console.log('app file generated,%s,%s bytes', appFile, bytes);
@@ -123,7 +123,7 @@ exports.init = function (appBase, downloadBase) {
             });
         } else {
             fsext.remove(appFolder, function () {
-                fs.rename(dirPath, appFolder, function () {
+                fs.copy(dirPath, appFolder, function () {
                     console.log("complete upgrade," + dirPath);
                     if (fs.existsSync(appFile)) {
                         console.log('app file already exists,%s', appFile);
