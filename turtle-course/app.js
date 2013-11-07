@@ -25,8 +25,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', routes.index);
 app.get('/course', function (req, res) {
     var chapterFolder = req.query.chapter;
+    var subject = req.query.subject;
+    console.log('parse chapter,%s', chapterFolder);
     var chapter = course.parseChapter(chapterFolder);
-    course.exportChapter('chinese', chapter, "/Users/fxp/Downloads/export");
+    course.exportChapter(subject, chapter, "out");
     res.send(chapter);
 });
 

@@ -142,7 +142,7 @@ exports.parseLesson = function (chapterFolder, lessonFolder) {
     // Read activities
     var files = fs.readdirSync(activityFolder);
     files.sort(function (a, b) {
-        return parseInt(a[0]) - parseInt(b[0]);
+        return parseInt(a.split('.')[0]) - parseInt(b.split('.')[0]);
     });
     _.each(files, function (file) {
         console.log("activity:" + file);
@@ -161,11 +161,17 @@ exports.parseLesson = function (chapterFolder, lessonFolder) {
         lesson.activities.push(activity);
 
         files.sort(function (a, b) {
-            return parseInt(a[0]) - parseInt(b[0]);
+            return parseInt(a.split('.')[0]) - parseInt(b.split('.')[0]);
         });
         if ("quiz" == activity.type) {
             var problems = fs.readdirSync(path.join(activityFolder, file, "problems"));
+            problems.sort(function (a, b) {
+                return parseInt(a.split('.')[0]) - parseInt(b.split('.')[0]);
+            });
             _.each(problems, function (problem) {
+                if (_.startsWith(problem, ".")) {
+                    return;
+                }
                 console.log("problem:%s,%s,%s", folder, file, problem);
                 var data = fs.readFileSync(path.join(activityFolder, file, "problems", problem), "utf8");
                 data = data.replace(/^\uFEFF/, '');
