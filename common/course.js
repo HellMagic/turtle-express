@@ -235,7 +235,7 @@ exports.exportChapter = function (subject, chapter, exportFolder) {
     exportChapterManifest.lessons = [];
     exportChapterManifest.grade = 0;
     exportChapterManifest.title = chapter.name;
-    exportChapterManifest.ts = 1381207975;
+    exportChapterManifest.ts = new Date().getTime();
     _.each(chapter.lessons, function (lesson) {
         exportChapterManifest.lessons.push({
             id: lesson.id,

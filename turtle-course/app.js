@@ -5,7 +5,9 @@
 var express = require('express')
     , routes = require('./routes')
     , user = require('./routes/user')
+    , request = require('request')
     , http = require('http')
+    , fs = require('fs')
     , course = require('../common/course')
     , path = require('path');
 
