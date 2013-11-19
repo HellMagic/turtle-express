@@ -45,13 +45,10 @@ setInterval(function () {
     },
     30 * 1000);
 
-app.get('/clients', function (req, res) {
-    var clients = server.clients;
-    for (var key in Object.keys(clients)) {
-        var client = clients[key];
-        console.log('client:%s',client.addr);
-    }
-    res.send(Object.keys(clients));
+
+app.post('/client', function (req, res) {
+    console.log(req.body);
+    res.send('ok');
 });
 
 app.get('/broadcast', function (req, res) {

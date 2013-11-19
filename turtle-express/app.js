@@ -29,21 +29,9 @@ var APP_BASE = 'app'
     , am = AM.init(APP_BASE, DOWNLOAD_BASE)
     , udm = UDM.init(USERDATA_BASE)
     , SERVICE_ID_FILE = 'service_info'
-//    , TURTLE_DIRECTORY_HOST = '127.0.0.1'
+    , HEARTBEAT_INTERVAL = 30 * 1000
     , TURTLE_DIRECTORY_HOST = 'cloud.sunshine-library.org'
-    , TURTLE_DIRECTORY_PORT = 9461;
-
-// start heat beat connection
-console.log("heart beat server:%s:%s", TURTLE_DIRECTORY_HOST, TURTLE_DIRECTORY_PORT);
-if (!fs.existsSync(SERVICE_ID_FILE)) {
-    serverInfo = {id: uuid.v4()};
-    fs.writeFileSync(SERVICE_ID_FILE, JSON.stringify(serverInfo), 'utf8');
-}
-hb.client(TURTLE_DIRECTORY_HOST, TURTLE_DIRECTORY_PORT, function () {
-    var serviceInfo = JSON.parse(fs.readFileSync(SERVICE_ID_FILE, 'utf8'));
-    serviceInfo.apps = am.all();
-    return JSON.stringify(serviceInfo);
-});
+    , TURTLE_DIRECTORY_PORT = 9460;
 
 var app = express()
     , PORT = process.env.PORT || 9460;
@@ -323,6 +311,56 @@ app.get("/user_data/*", function (req, res) {
     var result = udm.getData(accessToken, req.path);
     res.send(result || {});
 });
+
+/**
+ * Heart beat
+ */
+var clients = {};
+
+app.post('/client', function (req, res) {
+    console.log(Object.keys(req.body.apps));
+    var c = clients[req.body.id] = req.body;
+    c.lastHeartBeatTime = new Date().getTime();
+    res.send('ok');
+});
+
+app.get('/clients', function (req, res) {
+    res.send(clients);
+});
+
+if (!fs.existsSync(SERVICE_ID_FILE)) {
+    serverInfo = {id: uuid.v4()};
+    fs.writeFileSync(SERVICE_ID_FILE, JSON.stringify(serverInfo), 'utf8');
+}
+
+var heartBeat = function () {
+    try {
+        var serviceInfo = JSON.parse(fs.readFileSync(SERVICE_ID_FILE, 'utf8'))
+            , directoryTurtleUrl = "http://" + TURTLE_DIRECTORY_HOST + ":" + TURTLE_DIRECTORY_PORT + "/client";
+        serviceInfo.apps = am.all();
+        request.post(
+            {
+                "url": directoryTurtleUrl,
+                "Content-type": "application/json",
+                "method": "POST",
+                json: serviceInfo
+            }, function (e, r, body) {
+                if (e || r.statusCode != 200) {
+                    console.error('cannot connect to directory turtle,' + directoryTurtleUrl);
+                } else {
+                    console.log('heart beat');
+                }
+            }
+        );
+    } catch (err) {
+        console.error("service info file broken. check " + SERVICE_ID_FILE);
+    }
+}
+
+setInterval(function () {
+    heartBeat();
+}, HEARTBEAT_INTERVAL);
+
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
