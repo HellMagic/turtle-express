@@ -1,0 +1,96 @@
+#wrapper    {
+    position: relative;
+    overflow: hidden; 
+    min-height: 800px;
+    background-color: #f9f9f9;
+    
+    &.sidebar-mini {
+        @media (min-width: 768px) {
+            aside   {
+                 width: @mini-sidebar-width;
+                
+                .brand  {
+                    .text-toggle    {
+                        display: none;   
+                    }
+                }
+                
+                .sidebar-inner  {
+                    .size-toggle    {
+                        text-align: center;   
+                        
+                        .pull-right {
+                            display: none;   
+                        }
+                    }
+                    .user-block   {
+                        text-align: center;
+                        img {
+                            float: none;   
+                        }
+                        .detail {
+                            display: none;   
+                        }
+                    }
+                    
+                    .search-block   {
+                        display: none;   
+                    }
+                    
+                    .main-menu  {
+                        >ul {
+                            > li  {
+                                > a   {
+                                    text-align: center;
+                                    font-size: 11px;
+                                    padding: 13px 10px; 
+                                    
+                                    .menu-icon  {
+                                        display: block;   
+                                    }
+                                    
+                                    .text   {
+                                        display:block;
+                                        margin-top:5px;
+                                        margin-left: 0;   
+                                    }
+                                    
+                                    .pull-right {
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    .alert  {
+                        display:none;   
+                    }
+                }
+            }
+            #main-container ,#top-nav ,footer {
+                margin-left: @mini-sidebar-width;   
+                .transition(all 0.5s ease);
+            }
+            
+            #top-nav    {
+                &.fixed {
+                    left: 0px;
+                }   
+            }
+        }
+    }
+    
+    &.sidebar-display {
+        @media (max-width: 767px) {
+            aside   {
+                margin-left: 0;   
+                .transition(all 0.5s ease);
+            }
+            #main-container ,#top-nav ,footer {
+                margin-left: @sidebar-width;   
+                .transition(margin-left 0.5s ease);
+            }
+        }
+    }
+}

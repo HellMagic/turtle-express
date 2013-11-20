@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Endless Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+	
+	<!-- Font Awesome-->
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	
+	<!-- Color box-->
+	<link href="css/colorbox/colorbox.css" rel="stylesheet">
+	
+	<!--Colorpicker-->
+	<link href="css/jquery.minicolors.css" rel="stylesheet">
+
+	<!--Endless-->
+	<link href="css/endless.css" rel="stylesheet">
+	<link href="css/endless-skin.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="bootstrap/assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body class="overflow-hidden">
+	<!-- Overlay Div -->
+	<div id="overlay">
+		<div class="overlay-inner">
+			<div id="followingBallsG">
+				<div id="followingBallsG_1" class="followingBallsG">
+				</div>
+				<div id="followingBallsG_2" class="followingBallsG">
+				</div>
+				<div id="followingBallsG_3" class="followingBallsG">
+				</div>
+				<div id="followingBallsG_4" class="followingBallsG">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<a href="" id="theme-setting-icon"><i class="icon-cog icon-large"></i></a>
+	<div id="theme-setting">
+		<div class="title">
+			<strong class="no-margin">Skin Color</strong>
+		</div>
+		<div class="theme-box">
+			<a class="theme-color" style="background:#323447" id="default"></a>
+			<a class="theme-color" style="background:#efefef" id="skin-1"></a>
+			<a class="theme-color" style="background:#a93922" id="skin-2"></a>
+			<a class="theme-color" style="background:#3e6b96" id="skin-3"></a>
+			<a class="theme-color" style="background:#635247" id="skin-4"></a>
+		</div>
+	</div><!-- /theme-setting -->
+	
+	<div id="wrapper" class="preload">
+		<div id="top-nav" class="fixed">
+			<button type="button" class="navbar-toggle pull-left" id="sidebarToggle">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<ul class="nav-notification clearfix">
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						<i class="icon-envelope icon-large"></i>
+						<span class="notification-label">7</span>
+					</a>
+					<ul class="dropdown-menu message dropdown-1">
+						<li><a>You have 4 new unread messages</a></li>					  
+						<li>
+							<a class="clearfix" href="#">
+								<img src="img/user.jpg" alt="User Avatar">
+								<div class="detail">
+									<strong>John Doe</strong>
+									<p class="no-margin">
+										Lorem ipsum dolor sit amet...
+									</p>
+									<small class="text-muted"><i class="icon-ok text-success"></i> 27m ago</small>
+								</div>
+							</a>	
+						</li>
+						<li>
+							<a class="clearfix" href="#">
+								<img src="img/user2.jpg" alt="User Avatar">
+								<div class="detail">
+									<strong>Jane Doe</strong>
+									<p class="no-margin">
+										Lorem ipsum dolor sit amet...
+									</p>
+									<small class="text-muted"><i class="icon-ok text-success"></i> 5hr ago</small>
+								</div>
+							</a>	
+						</li>
+						<li>
+							<a class="clearfix" href="#">
+								<img src="img/user.jpg" alt="User Avatar">
+								<div class="detail">
+									<strong>Bill Doe</strong>
+									<p class="no-margin">
+										Lorem ipsum dolor sit amet...
+									</p>
+									<small class="text-muted"><i class="icon-reply"></i> Yesterday</small>
+								</div>
+							</a>	
+						</li>
+						<li>
+							<a class="clearfix" href="#">
+								<img src="img/user2.jpg" alt="User Avatar">
+								<div class="detail">
+									<strong>Baby Doe</strong>
+									<p class="no-margin">
+										Lorem ipsum dolor sit amet...
+									</p>
+									<small class="text-muted"><i class="icon-reply"></i> 9 Feb 2013</small>
+								</div>
+							</a>	
+						</li>
+						<li><a href="#">View all messages</a></li>					  
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<i class="icon-tasks icon-large"></i>
+						<span class="notification-label">12</span>
+					</a>
+					<ul class="dropdown-menu task dropdown-2">
+						<li><a href="#">You have 4 tasks to complete</a></li>					  
+						<li>
+							<a href="#">
+								<div class="clearfix">
+									<span class="pull-left">Bug Fixes</span>
+									<small class="pull-right text-muted">78%</small>
+								</div>
+								<div class="progress">
+									<div class="progress-bar" style="width:78%"></div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="clearfix">
+									<span class="pull-left">Software Updating</span>
+									<small class="pull-right text-muted">54%</small>
+								</div>
+								<div class="progress progress-striped">
+									<div class="progress-bar progress-bar-success" style="width:54%"></div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="clearfix">
+									<span class="pull-left">Database Migration</span>
+									<small class="pull-right text-muted">23%</small>
+								</div>
+								<div class="progress">
+									<div class="progress-bar progress-bar-warning" style="width:23%"></div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								Unit Testing
+								<div class="progress progress-striped active">
+									<div class="progress-bar progress-bar-danger " style="width:92%">92%</div>
+								</div>
+							</a>
+						</li>
+						<li><a href="#">View all tasks</a></li>					  
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						<i class="icon-bell icon-large"></i>
+						<span class="notification-label">5</span>
+					</a>
+					<ul class="dropdown-menu notification dropdown-3">
+						<li><a href="#">You have 5 new notifications</a></li>					  
+						<li>
+							<a href="#">
+								<span class="notification-icon bg-warning">
+									<i class="icon-warning-sign"></i>
+								</span>
+								<span class="m-left-5">Server #2 not responding.</span>
+								<span class="time text-muted">Just now</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="notification-icon bg-success">
+									<i class="icon-plus"></i>
+								</span>
+								<span class="m-left-5">New user registration.</span>
+								<span class="time text-muted">2m ago</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="notification-icon bg-danger">
+									<i class="icon-bolt"></i>
+								</span>
+								<span class="m-left-5">Application error.</span>
+								<span class="time text-muted">5m ago</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="notification-icon bg-success">
+									<i class="icon-usd"></i>
+								</span>
+								<span class="m-left-5">2 items sold.</span>
+								<span class="time text-muted">1hr ago</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="notification-icon bg-success">
+									<i class="icon-plus"></i>
+								</span>
+								<span class="m-left-5">New user registration.</span>
+								<span class="time text-muted">1hr ago</span>
+							</a>
+						</li>
+						<li><a href="#">View all notifications</a></li>					  
+					</ul>
+				</li>
+				<li class="profile dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						<strong>John Doe</strong>
+						<span><i class="icon-chevron-down"></i></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a class="clearfix" href="#">
+								<img src="img/user.jpg" alt="User Avatar">
+								<div class="detail">
+									<strong>John Doe</strong>
+									<p class="grey">John_Doe@email.com</p> 
+								</div>
+							</a>
+						</li>
+						<li><a tabindex="-1" href="profile.html" class="main-link"><i class="icon-edit icon-large"></i> Edit profile</a></li>
+						<li><a tabindex="-1" href="gallery.html" class="main-link"><i class="icon-picture icon-large"></i> Photo Gallery</a></li>
+						<li><a tabindex="-1" href="#" class="theme-setting"><i class="icon-cog icon-large"></i> Setting</a></li>
+						<li class="divider"></li>
+						<li><a tabindex="-1" href="login.html" class="main-link"><i class="icon-lock icon-large"></i> Log out</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div><!-- /top-nav-->
+		
+		<aside class="fixed">
+			<div class="brand">
+				<span>Endless</span>
+				<span class="text-toggle"> Admin</span>
+			</div><!-- /brand -->			
+			<div class="sidebar-inner">
+				<div class="size-toggle">
+					<a class="btn btn-sm" id="sizeToggle">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+					<a class="btn btn-sm pull-right" href="login.html">
+						<i class="icon-off"></i>
+					</a>
+				</div><!-- /size-toggle -->	
+				<div class="user-block clearfix">
+					<img src="img/user.jpg" alt="User Avatar">
+					<div class="detail">
+						<strong>John Doe</strong><span class="badge badge-danger m-left-5">4</span>
+						<ul class="list-inline">
+							<li><a href="profile.html">Profile</a></li>
+							<li><a href="inbox.html" class="no-margin">Inbox</a></li>
+						</ul>
+					</div>
+				</div><!-- /user-block -->
+				<div class="search-block">
+					<div class="input-group">
+						<input type="text" class="form-control input-sm" placeholder="search here...">
+						<span class="input-group-btn">
+							<button class="btn btn-default btn-sm" type="button"><i class="icon-search"></i></button>
+						</span>
+					</div><!-- /input-group -->
+				</div><!-- /search-block -->
+				<div class="main-menu">
+					<ul>
+						<li>
+							<a href="index.html">
+								<span class="menu-icon">
+									<i class="icon-desktop icon-large"></i> 
+								</span>
+								<span class="text">
+									Dashboard
+								</span>
+								<span class="menu-hover"></span>
+							</a>
+						</li>
+						<li class="active">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<span class="menu-icon">
+									<i class="icon-beaker icon-large"></i> 
+								</span>
+								<span class="text">
+									Component
+								</span>
+								<span class="badge pull-right">9</span>
+								<span class="menu-hover"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="ui_element.html">
+										UI Features
+									</a>
+								</li>
+								<li>
+									<a href="button.html">
+										Button & Icons
+									</a>
+								</li>
+								<li>
+									<a href="tab.html">
+										Tab
+									</a>
+								</li>
+								<li>
+									<a href="nestable_list.html">
+										Nestable List
+									</a>
+								</li>
+								<li>
+									<a href="calendar.html">
+										Calendar
+									</a>
+								</li>
+								<li>
+									<a href="table.html">
+										Table
+									</a>
+								</li>
+								<li>
+									<a href="widget.html">
+										Widget
+									</a>
+								</li>
+								<li>
+									<a href="form_element.html">
+										Form Element
+									</a>
+								</li>
+								<li>
+									<a href="form_wizard.html">
+										Form Wizard
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">
+								<span class="menu-icon">
+									<i class="icon-file-text icon-large"></i> 
+								</span>
+								<span class="text">
+									Page
+								</span>
+								<span class="menu-hover"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="login.html">
+										Sign in
+									</a>
+								</li>
+								<li>
+									<a href="register.html">
+										Sign up
+									</a>
+								</li>
+								<li>
+									<a href="profile.html">
+										Profile
+									</a>
+								</li>
+								<li>
+									<a href="blog.html">
+										Blog
+									</a>
+								</li>
+								<li>
+									<a href="single_post.html">
+										Single Post
+									</a>
+								</li>
+								<li>
+									<a href="pricing.html">
+										Priciing table
+									</a>
+								</li>
+								<li>
+									<a href="invoice.html">
+										Invoice
+									</a>
+								</li>
+								<li>
+									<a href="error404.html">
+										Error 404
+									</a>
+								</li>
+								<li>
+									<a href="blank.html">
+										Blank
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="timeline.html">
+								<span class="menu-icon">
+									<i class="icon-time icon-large"></i> 
+								</span>
+								<span class="text">
+									Timeline
+								</span>
+								<span class="menu-hover"></span>
+							</a>
+						</li>
+						<li>
+							<a href="gallery.html">
+								<span class="menu-icon">
+									<i class="icon-picture icon-large"></i> 
+								</span>
+								<span class="text">
+									Gallery
+								</span>
+								<span class="menu-hover"></span>
+							</a>
+						</li>
+						<li>
+							<a href="inbox.html">
+								<span class="menu-icon">
+									<i class="icon-envelope icon-large"></i> 
+								</span>
+								<span class="text">
+									Inbox
+								</span>
+								<span class="badge badge-danger pull-right">4</span>
+								<span class="menu-hover"></span>
+							</a>
+						</li>
+						<li>
+							<a href="contact.html">
+								<span class="menu-icon">
+									<i class="icon-phone icon-large"></i> 
+								</span>
+								<span class="text">
+									Contact
+								</span>
+								<span class="menu-hover"></span>
+							</a>
+						</li>
+					</ul>
+					
+					<div class="alert alert-info">
+						Welcome to Endless Admin.Do not forget to check all my pages. 
+					</div>
+				</div><!-- /main-menu -->
+			</div><!-- /sidebar-inner -->
+		</aside>
+
+		<div id="main-container">
+			<div class="padding-20">
+				<div class="row">
+					<div class="col-md-3 col-sm-4">
+						<div class="panel panel-default panel-stat1 bg-success">
+							<div class="panel-body">
+								<div class="value">99</div>
+								<div class="title">
+									<i class="icon-usd"></i>
+									<span class="m-left-5">Sales</span>
+								</div>
+							</div>
+						</div><!-- /panel -->
+					</div><!-- /.col -->
+					<div class="col-md-3 col-sm-4">
+						<div class="panel panel-default panel-stat2 bg-warning">
+							<div class="panel-body">
+								<span class="stat-icon">
+									<i class="icon-bar-chart"></i>
+								</span>
+								<div class="pull-right text-right">
+									<div class="value">58</div>
+									<div class="title">Visits</div>
+								</div>
+							</div>
+						</div><!-- /panel -->
+					</div><!-- /.col -->
+					<div class="col-md-3 col-sm-4">
+						<div class="panel panel-default panel-stat2 bg-info">
+							<div class="panel-body">
+								<span class="stat-icon">
+									<i class="icon-envelope"></i>
+								</span>
+								<div class="pull-right text-right">
+									<div class="value">41</div>
+									<div class="title">Email</div>
+								</div>
+							</div>
+						</div><!-- /panel -->
+					</div><!-- /.col -->
+					<div class="col-md-3 col-sm-4">
+						<div class="panel panel-default panel-stat2 bg-danger">
+							<div class="panel-body">
+								<span class="stat-icon">
+									<i class="icon-shopping-cart"></i>
+								</span>
+								<div class="pull-right text-right">
+									<div class="value">88</div>
+									<div class="title">Orders</div>
+								</div>
+							</div>
+						</div><!-- /panel -->
+					</div><!-- /.col -->
+					<div class="col-md-3 col-sm-4">
+						<div class="panel panel-default panel-stat2">
+							<div class="panel-body">
+								<span class="stat-icon">
+									<i class="icon-user"></i>
+								</span>
+								<div class="pull-right text-right">
+									<div class="value">45</div>
+									<div class="title">Members</div>
+								</div>
+							</div>
+						</div><!-- /panel -->
+					</div><!-- /.col -->
+					<div class="col-md-3 col-sm-4">
+						<div class="panel panel-default panel-stat2 bg-primary">
+							<div class="panel-body">
+								<span class="stat-icon">
+									<i class="icon-comment"></i>
+								</span>
+								<div class="pull-right text-right">
+									<div class="value">72</div>
+									<div class="title"><small>Comments</small></div>
+								</div>
+							</div>
+						</div><!-- /panel -->
+					</div><!-- /.col -->
+					<div class="col-md-2 col-sm-4">
+						<div class="panel panel-default panel-stat1 bg-success">
+							<div class="panel-body">
+								<div class="value">12</div>
+								<div class="title">
+									<span class="m-left-5">Bookings</span>
+								</div>
+							</div>
+						</div><!-- /panel -->
+					</div><!-- /.col -->
+					<div class="col-md-2 col-sm-4">
+						<div class="panel panel-default panel-stat1 bg-warning">
+							<div class="panel-body">
+								<div class="value">39</div>
+								<div class="title">
+									<span class="m-left-5">Cancelled</span>
+								</div>
+							</div>
+						</div><!-- /panel -->
+					</div><!-- /.col -->
+					<div class="col-md-2 col-sm-4">
+						<div class="panel panel-default panel-stat1 bg-info">
+							<div class="panel-body">
+								<div class="value">51</div>
+								<div class="title">
+									<span class="m-left-5"><small>New Items</small></span>
+								</div>
+							</div>
+						</div><!-- /panel -->
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+				<div class="row">
+					<div class="col-md-6">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								Simple Widget
+								
+								<ul class="panel-toolbar">
+									<li>
+										<a class="collapse-toggle"><i class="icon-chevron-up"></i></a>
+									</li>
+								</ul>
+							</div>
+							<div class="panel-body">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eros nibh, viverra a dui a, gravida varius velit. Nunc vel tempor nisi. Aenean id pellentesque mi, non placerat mi. Integer luctus accumsan tellus. Vivamus quis elit sit amet nibh lacinia suscipit eu quis purus. Vivamus tristique est non ipsum dapibus lacinia sed nec metus.
+							</div>
+						</div><!-- /panel -->
+						<div class="panel panel-default">
+							<div class="panel-body p-top-10">
+								<div class="inline-block m-top-5">
+									<span class="badge badge-danger">4321</span><strong class="m-left-5 m-right-10"> Visits</strong>
+								</div>
+								<div class="inline-block m-top-5">
+									<span class="badge badge-success">5190</span><strong class="m-left-5 m-right-10"> Sales</strong>
+								</div>
+								<div class="inline-block m-top-5">
+									<span class="badge badge-info">8123</span><strong class="m-left-5 m-right-10"> Orders</strong>
+								</div>
+								<div class="inline-block m-top-5">
+									<span class="badge badge-warning">2351</span><strong class="m-left-5 m-right-10"> Users</strong>
+								</div>
+							</div>
+						</div><!-- /panel -->
+					</div><!-- /.col -->
+					<div class="col-md-6">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								Task
+								<span class="badge badge-info pull-right">	
+									4 left
+								</span>
+							</div>
+						
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>Task</th>
+										<th>Progress</th>
+										<th></th>
+										<th>Time</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Bug Fixes</td>
+										<td>
+											<div class="progress progress-striped active" style="height:8px; margin:5px 0 0 0;">
+												<div class="progress-bar" style="width: 45%">
+													<span class="sr-only">45% Complete</span>
+												</div>
+											</div>
+										</td>
+										<td>45%</td>
+										<td><span class="badge badge-info">2hr</span></td>
+									</tr>
+									<tr>
+										<td>Mobile Development</td>
+										<td>
+											<div class="progress progress-striped active" style="height:8px; margin:5px 0 0 0;">
+												<div class="progress-bar progress-bar-success" style="width: 61%">
+													<span class="sr-only">61% Complete</span>
+												</div>
+											</div>
+										</td>
+										<td>61%</td>
+										<td><span class="badge badge-info">1hr</span></td>
+									</tr>
+									<tr>
+										<td>Unit Testing</td>
+										<td>
+											<div class="progress progress-striped active" style="height:8px; margin:5px 0 0 0;">
+												<div class="progress-bar progress-bar-danger" style="width: 97%">
+													<span class="sr-only">97% Complete</span>
+												</div>
+											</div>
+										</td>
+										<td>97%</td>
+										<td><span class="badge badge-info">5m</span></td>
+									</tr>
+									<tr>
+										<td>New Frontend Layout</td>
+										<td>
+											<div class="progress progress-striped active" style="height:8px; margin:5px 0 0 0;">
+												<div class="progress-bar progress-bar-warning" style="width: 18%">
+													<span class="sr-only">18% Complete</span>
+												</div>
+											</div>
+										</td>
+										<td>18%</td>
+										<td><span class="badge badge-info">12hr</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div><!-- /panel -->
+					</div><!-- /.col-->
+				</div><!-- /.row-->
+				<div class="row">
+					<div class="col-lg-8">
+						<div class="row">
+							<div class="col-md-6 col-sm-6">
+								<div class="panel panel-default bg-success">
+									<div class="panel-body">
+										<a href="#" class="pull-left avatar"> 
+											<img src="img/user.jpg" class="img-circle" alt="User Avatar"> 
+										</a>
+										<div class="pull-left" style="margin-left:15px;">
+											<strong class="font-16">John Doe</strong><br/>
+											<span class="grey">John@email.com</span>
+										</div>
+									</div>
+									<div class="list-group">
+										<a class="list-group-item">
+											<i class="icon-bar-chart icon-large grey"></i>
+											<span class="m-left-5">Overview</span>
+											<span class="badge badge-warning">3</span>
+										</a>
+										<a class="list-group-item">
+											<i class="icon-shopping-cart icon-large grey"></i>
+											<span class="m-left-5">Sales</span>
+											<span class="badge badge-danger">14</span>
+										</a>
+										<a class="list-group-item">
+											<i class="icon-envelope icon-large"></i>
+											<span class="m-left-5">Inbox</span>
+											<span class="badge badge-info">7</span>
+										</a>
+										<a class="list-group-item">
+											<i class="icon-usd icon-large"></i>
+											<span class="m-left-5">Balance</span>
+											<span class="badge">$3216</span>	
+										</a>
+									</div><!-- /list-group -->
+								</div><!-- /panel -->
+								<div class="panel panel-default">	
+									<div class="panel-heading">
+										Feeds
+									</div>
+											
+									<ul class="list-group">
+										<li class="list-group-item clearfix">
+											<div class="activity-icon small">
+												<i class="icon-camera"></i>
+											</div>
+											<div class="pull-left m-left-10">
+												<span>John Doe Add a new photo.</span><br/>
+												<small class="text-muted"><i class="icon-time"></i> 2m ago</small>
+											</div>
+										</li>
+										<li class="list-group-item clearfix">
+											<div class="activity-icon bg-success small">
+												<i class="icon-usd"></i>
+											</div>
+											<div class="pull-left m-left-10">
+												<span>2 items sold.</span><br/>
+												<small class="text-muted"><i class="icon-time"></i> 30m ago</small>
+											</div>	
+										</li>
+										<li class="list-group-item clearfix">
+											<div class="activity-icon bg-info small">
+												<i class="icon-comment"></i>
+											</div>
+											<div class="pull-left m-left-10">
+												<span>John Doe commented on <a href="#">This article</a></span><br/>
+												<small class="text-muted"><i class="icon-time"></i> 1hr ago</small>
+											</div>
+										</li>
+										<li class="list-group-item clearfix">
+											<div class="activity-icon bg-success small">
+												<i class="icon-usd"></i>
+											</div>
+											<div class="pull-left m-left-10">
+												<span>3 items sold.</span><br/>
+												<small class="text-muted"><i class="icon-time"></i> 2days ago</small>
+											</div>	
+										</li>
+									</ul>	
+									<div class="panel-footer text-right">
+										<a href="#" class="btn btn-sm btn-success"><i class="icon-plus"></i> View more</a>
+									</div>
+								</div><!-- /panel -->
+								<div class="panel">
+									<div class="panel-body">
+										<a href="#" class="pull-left avatar"> 
+											<img src="img/user.jpg" class="img-circle" alt="User Avatar"> 
+										</a>
+										<div class="pull-left m-left-10">
+											<strong class="font-14 block">John Doe</strong>
+											<small class="text-muted">John_Doe@email.com</small>
+											<div class="seperator"></div>
+											<a class="btn btn-xs btn-warning">View Profile</a>
+											<a class="btn btn-xs btn-warning">Follower</a>
+										</div>
+									</div>
+								</div><!-- /panel -->
+							</div><!-- /.col -->
+							<div class="col-md-6 col-sm-6">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<i class="icon-comment"></i> Chat
+										<div class="btn-group pull-right">
+											<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+												<i class="icon-chevron-down"></i>
+											</button>
+											<ul class="dropdown-menu slidedown">
+												<li><a href="#"><i class="icon-refresh"></i> Refresh</a></li>
+												<li><a href="#"><i class="icon-ok-sign"></i> Available</a></li>
+												<li><a href="#"><i class="icon-remove-sign"></i> Busy</a></li>
+												<li><a href="#"><i class="icon-time"></i> Away</a></li>
+												<li><a href="#"><i class="icon-signout"></i> Disconnect</a></li>
+											</ul>
+										</div>	
+									</div>
+									<div class="panel-body">
+										<div id="chatScroll">
+											<ul class="chat">
+												<li class="left clearfix">
+													<span class="chat-img pull-left">
+														<img src="img/user.jpg" alt="User Avatar">
+													</span>
+													<div class="chat-body clearfix">
+														<div class="header">
+															<strong class="primary-font">John Doe</strong>
+															<small class="pull-right text-muted"><i class="icon-time"></i> 12 mins ago</small>
+														</div>
+														<p>
+															Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+														</p>
+													</div>
+												</li>
+												<li class="right clearfix">
+													<span class="chat-img pull-right">
+														<img src="img/user2.jpg" alt="User Avatar">
+													</span>
+													<div class="chat-body clearfix">
+													<div class="header">
+														<strong class="primary-font">Jane Doe</strong>
+														<small class="pull-right text-muted"><i class="icon-time"></i> 13 mins ago</small>
+													</div>
+														<p>
+															Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at. 
+														</p>
+													</div>
+												</li>
+												<li class="left clearfix">
+													<span class="chat-img pull-left">
+														<img src="img/user.jpg" alt="User Avatar">
+													</span>
+													<div class="chat-body clearfix">
+														<div class="header">
+															<strong class="primary-font">John Doe</strong>
+															<small class="pull-right text-muted"><i class="icon-time"></i> 20 mins ago</small>
+														</div>
+														<p>
+															Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+														</p>
+													</div>
+												</li>
+												<li class="right clearfix">
+													<span class="chat-img pull-right">
+														<img src="img/user2.jpg" alt="User Avatar">
+													</span>
+													<div class="chat-body clearfix">
+													<div class="header">
+														<strong class="primary-font">Jane Doe</strong>
+														<small class="pull-right text-muted"><i class="icon-time"></i> 25 mins ago</small>
+													</div>
+														<p>
+															Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at. 
+														</p>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="panel-footer">
+										<div class="input-group">
+											<input id="btn-input" type="text" class="form-control input-sm" placeholder="type your message here...">
+											<span class="input-group-btn">
+												<button class="btn btn-warning btn-sm" id="btn-chat">Send</button>
+											</span>
+										</div><!-- /input-group -->
+									</div>
+								</div><!-- /panel -->
+								<div class="panel">
+									<div class="panel-tab clearfix">
+										<ul class="tab-bar bg-primary">
+											<li><a href="#Sales" data-toggle="tab"><i class="icon-usd"></i> Sales</a></li>
+											<li class="active"><a href="#user" data-toggle="tab"><i class="icon-user"></i> Member</a></li>
+											<li><a href="#comment" data-toggle="tab"><i class="icon-comment"></i> Comment</a></li>
+										</ul>
+									</div>
+									<div class="panel-body">
+										<div class="tab-content">
+											<div class="tab-pane fade" id="Sales">
+												<div class="media">
+													<a href="#" class="thumbnail pull-left">
+														<img data-src="holder.js/40x40" alt="Product Image" src=".">
+													</a>
+													<div class="media-body">
+														<span class="block"><a href="#">Product 1</a></span>
+														2 items sold<strong class="text-danger">($50)</strong>
+														<small class="pull-right text-muted"><i class="icon-time"></i> 5m ago</small>
+													</div>
+												</div><!-- /media -->
+											
+												<div class="media">
+													<a href="#" class="thumbnail pull-left">
+														<img data-src="holder.js/40x40" alt="Product Image" src=".">
+													</a>
+													<div class="media-body">
+														<span class="block"><a href="#">Product 2</a></span>
+														3 items sold<strong class="text-danger">($60)</strong>
+														<small class="pull-right text-muted"><i class="icon-time"></i> 15m ago</small>
+													</div>
+												</div><!-- /media -->
+											
+												<div class="media">
+													<a href="#" class="thumbnail pull-left">
+														<img data-src="holder.js/40x40" alt="Product Image" src=".">
+													</a>
+													<div class="media-body">
+														<span class="block"><a href="#">Product 3</a></span>
+														1 item sold<strong class="text-danger">($25)</strong>
+														<small class="pull-right text-muted"><i class="icon-time"></i> 1hr ago</small>
+													</div>
+												</div><!-- /media -->
+												
+												<div class="media">
+													<a href="#" class="thumbnail pull-left">
+														<img data-src="holder.js/40x40" alt="Product Image" src=".">
+													</a>
+													<div class="media-body">
+														<span class="block"><a href="#">Product 4</a></span>
+														2 items sold<strong class="text-danger">($19)</strong>
+														<small class="pull-right text-muted"><i class="icon-time"></i> yesterday</small>
+													</div>
+												</div><!-- /media -->								
+											</div>
+										
+											<div class="tab-pane fade in active" id="user">
+												<div class="media">
+													<a href="#" class="pull-left">
+														<img class="img-circle" style="width:40px;" src="img/user.jpg" alt="User Avatar">
+													</a>
+													<div class="media-body">
+														<strong class="block">John Doe</strong>
+														<small class="text-muted">john_doe@email.com</small>
+														<span class="pull-right label label-success">Approved</span>
+													</div>
+												</div><!-- /media -->
+											
+												<div class="media">
+													<a href="#" class="pull-left">
+														<img class="pull-left img-circle" style="width:40px;" src="img/user2.jpg" alt="User Avatar">
+													</a>
+													<div class="media-body">
+														<strong class="block">Jane Doe</strong>
+														<small class="text-muted">jane_doe@email.com</small>
+														<span class="pull-right label label-success">Approved</span>
+													</div>
+												</div><!-- /media -->
+											
+												<div class="media">
+													<a href="#" class="pull-left">
+														<img class="pull-left img-circle" style="width:40px;" src="img/user.jpg" alt="User Avatar">
+													</a>
+													<div class="media-body">
+														<strong class="block">Bill Doe</strong>
+														<small class="text-muted">bill_doe@email.com</small>
+														<span class="pull-right label label-warning">Pending</span>
+													</div>
+												</div><!-- /media -->
+												
+												<div class="media">
+													<a href="#" class="pull-left">
+														<img class="pull-left img-circle" style="width:40px;" src="img/user2.jpg" alt="User Avatar">
+													</a>
+													<div class="media-body">
+														<strong class="block">Susan Doe</strong>
+														<small class="text-muted">susan_doe@email.com</small>
+														<span class="pull-right label label-danger">Blocked</span>
+													</div>
+												</div><!-- /media -->							
+											</div>
+											<div class="tab-pane fade" id="comment">
+												<div class="media">
+													<a href="#" class="pull-left">
+														<img class="img-circle" style="width:40px;" src="img/user.jpg" alt="User Avatar">
+													</a>
+													<div class="media-body">
+														<strong>John Doe</strong>
+														<small class="pull-right text-muted"><i class="icon-time"></i> 1m ago</small>
+														<p class="ellipsis">
+															Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at.
+														</p>
+													</div>
+												</div><!-- /media -->
+											
+												<div class="media">
+													<a href="#" class="pull-left">
+														<img class="img-circle" style="width:40px;" src="img/user2.jpg" alt="User Avatar">
+													</a>
+													<div class="media-body">
+														<strong>Jane Doe</strong>
+														<small class="pull-right text-muted"><i class="icon-time"></i> 31m ago</small>
+														<p class="ellipsis">
+															Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at.
+														</p>
+													</div>
+												</div><!-- /media -->
+											
+												<div class="media">
+													<a href="#" class="pull-left">
+														<img class="img-circle" style="width:40px;" src="img/user.jpg" alt="User Avatar">
+													</a>
+													<div class="media-body">
+														<strong>Bill Doe</strong>
+														<small class="pull-right text-muted"><i class="icon-time"></i> 50m ago</small>
+														<p class="ellipsis">
+															Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at.
+														</p>
+													</div>
+												</div><!-- /media -->
+												
+												<div class="media">
+													<a href="#" class="pull-left">
+														<img class="img-circle" style="width:40px;" src="img/user2.jpg" alt="User Avatar">
+													</a>
+													<div class="media-body">
+														<strong>Susan Doe</strong>
+														<small class="pull-right text-muted"><i class="icon-time"></i> 1hr ago</small>
+														<p class="ellipsis">
+															Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at.
+														</p>
+													</div>
+												</div><!-- /media -->					
+											</div>
+										</div><!-- /tab-content -->
+									</div>
+								</div><!-- /panel -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.col -->
+					<div class="col-lg-4">
+						<div class="panel bg-info">
+							<div class="panel-body text-center">
+								<span class="h4 block pull-right m-bottom-20">London</span>
+								<div class="seperator"></div>
+								<div class="m-top-20">
+									<i class="icon-cloud icon-4x"></i><span class="h1"> 12&deg;</span>
+								</div>
+							</div>
+							<div class="panel-footer">
+								<div class="row">
+									<div class="col-xs-4">
+										HUMIDITY
+										<strong class="font=14 block">47%</strong>
+									</div>
+									<div class="col-xs-4">
+										PRECIP
+										<strong class="font=14 block">1.5 in</strong>
+									</div>
+									<div class="col-xs-4">
+										WINDS
+										<strong class="font=14 block">15 mph</strong>
+									</div>
+								</div>
+							</div>
+						</div><!-- /panel -->
+						<div class="panel">
+							<div class="panel-body">
+								<div class="media">
+									<a href="#" class="thumbnail pull-left">
+										<img data-src="holder.js/80x80" alt="Product Image" src=".">
+									</a>
+									<div class="media-body">
+										<strong class="font-14">
+											Special Offer
+										</strong><br/>
+										<small class="text-muted">Buy 1 Get 1 Free</small>
+										<div class="seperator"></div>
+										<p>
+											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum auctor suscipit lobortis.
+										</p>
+										<a href="#" class="btn btn-success btn-sm"><i class="icon-shopping-cart"></i> Purchase</a>
+										<a href="#" class="btn btn-success btn-sm">View</a>
+									</div>
+								</div>
+							</div>
+						</div><!-- /panel -->
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<div class="clearfix">
+									<a href="#" class="pull-left m-right-10"> 
+										<img src="img/user.jpg" class="img-circle" style="width:40px;" alt="User Avatar"> 
+									</a>
+									<span class="label label-success pull-right">Friend</span>
+									<strong class="block">John Doe</strong>
+									<small class="text-muted">Oct 08,2013</small>
+								</div>
+								<div class="seperator"></div>
+
+								<p>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at. 
+								</p>
+								<a class="btn btn-default btn-xs"><i class="icon-thumbs-up"></i> Like</a>
+								<a class="btn btn-default btn-xs"><i class="icon-share"></i> Share</a>
+							</div>
+							<div class="panel-footer">
+								<input type="text" class="form-control input-sm" placeholder="Write a comment...">
+							</div>
+						</div><!-- /panel -->
+						<div class="panel panel-overview">
+							<div class="overview-icon bg-danger">
+								<i class="icon-usd"></i>
+							</div>
+							<div class="overview-value">
+								<div class="h2">256</div>
+								<div class="text-muted">Sales</div>
+							</div>
+						</div><!--/ panel -->
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+			</div><!-- /.padding-20 -->
+		</div><!-- /main-container -->
+	</div><!-- /wrapper -->
+
+	<a href="" id="scroll-to-top" class="hidden-print"><i class="icon-chevron-up"></i></a>
+	
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	
+	<!-- Jquery -->
+	<script src="bootstrap/assets/js/jquery.js"></script>
+	
+	<!-- Bootstrap -->
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bootstrap/assets/js/holder.js"></script>
+    <script src="bootstrap/assets/js/application.js"></script>
+	
+	<!-- Colorpicker -->
+	<script src='js/jquery.minicolors.min.js'></script>	
+
+	<!-- Colorbox -->
+	<script src='js/jquery.colorbox.min.js'></script>	
+
+	<!-- Slim scroll-->
+	<script src='js/jquery.slimscroll.min.js'></script>
+	
+	<!-- Cookie -->
+	<script src='js/jquery.cookie.min.js'></script>
+
+	<!-- Endless -->
+	<script src="js/endless/endless.js"></script>
+	
+	<script>
+		$(function()	{
+			$('#chatScroll').slimScroll();
+		});
+	</script>
+	
+  </body>
+</html>

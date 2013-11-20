@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Endless Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+	
+	<!-- Font Awesome -->
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	
+	<!-- Color box -->
+	<link href="css/colorbox/colorbox.css" rel="stylesheet">
+
+	<!-- Colorpicker -->
+	<link href="css/jquery.minicolors.css" rel="stylesheet">
+
+	<!-- Endless -->
+	<link href="css/endless.css" rel="stylesheet">
+	<link href="css/endless-skin.css" rel="stylesheet">
+	
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="bootstrap/assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body class="overflow-hidden">
+	<!-- Overlay Div -->
+	<div id="overlay">
+		<div class="overlay-inner">
+			<div id="followingBallsG">
+				<div id="followingBallsG_1" class="followingBallsG">
+				</div>
+				<div id="followingBallsG_2" class="followingBallsG">
+				</div>
+				<div id="followingBallsG_3" class="followingBallsG">
+				</div>
+				<div id="followingBallsG_4" class="followingBallsG">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<a href="" id="theme-setting-icon"><i class="icon-cog icon-large"></i></a>
+	<div id="theme-setting">
+		<div class="title">
+			<strong class="no-margin">Skin Color</strong>
+		</div>
+		<div class="theme-box">
+			<a class="theme-color" style="background:#323447" id="default"></a>
+			<a class="theme-color" style="background:#efefef" id="skin-1"></a>
+			<a class="theme-color" style="background:#a93922" id="skin-2"></a>
+			<a class="theme-color" style="background:#3e6b96" id="skin-3"></a>
+			<a class="theme-color" style="background:#635247" id="skin-4"></a>
+		</div>
+	</div><!-- /theme-setting -->
+	
+	<div id="wrapper" class="preload">
+		<div id="top-nav" class="fixed">
+			<button type="button" class="navbar-toggle pull-left" id="sidebarToggle">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<span class="page-title">
+				Form Validation & Wizard
+			</span>
+			<ul class="nav-notification clearfix">
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						<i class="icon-envelope icon-large"></i>
+						<span class="notification-label">7</span>
+					</a>
+					<ul class="dropdown-menu message dropdown-1">
+						<li><a>You have 4 new unread messages</a></li>					  
+						<li>
+							<a class="clearfix" href="#">
+								<img src="img/user.jpg" alt="User Avatar">
+								<div class="detail">
+									<strong>John Doe</strong>
+									<p class="no-margin">
+										Lorem ipsum dolor sit amet...
+									</p>
+									<small class="text-muted"><i class="icon-ok text-success"></i> 27m ago</small>
+								</div>
+							</a>	
+						</li>
+						<li>
+							<a class="clearfix" href="#">
+								<img src="img/user2.jpg" alt="User Avatar">
+								<div class="detail">
+									<strong>Jane Doe</strong>
+									<p class="no-margin">
+										Lorem ipsum dolor sit amet...
+									</p>
+									<small class="text-muted"><i class="icon-ok text-success"></i> 5hr ago</small>
+								</div>
+							</a>	
+						</li>
+						<li>
+							<a class="clearfix" href="#">
+								<img src="img/user.jpg" alt="User Avatar">
+								<div class="detail">
+									<strong>Bill Doe</strong>
+									<p class="no-margin">
+										Lorem ipsum dolor sit amet...
+									</p>
+									<small class="text-muted"><i class="icon-reply"></i> Yesterday</small>
+								</div>
+							</a>	
+						</li>
+						<li>
+							<a class="clearfix" href="#">
+								<img src="img/user2.jpg" alt="User Avatar">
+								<div class="detail">
+									<strong>Baby Doe</strong>
+									<p class="no-margin">
+										Lorem ipsum dolor sit amet...
+									</p>
+									<small class="text-muted"><i class="icon-reply"></i> 9 Feb 2013</small>
+								</div>
+							</a>	
+						</li>
+						<li><a href="#">View all messages</a></li>					  
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<i class="icon-tasks icon-large"></i>
+						<span class="notification-label">12</span>
+					</a>
+					<ul class="dropdown-menu task dropdown-2">
+						<li><a href="#">You have 4 tasks to complete</a></li>					  
+						<li>
+							<a href="#">
+								<div class="clearfix">
+									<span class="pull-left">Bug Fixes</span>
+									<small class="pull-right text-muted">78%</small>
+								</div>
+								<div class="progress">
+									<div class="progress-bar" style="width:78%"></div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="clearfix">
+									<span class="pull-left">Software Updating</span>
+									<small class="pull-right text-muted">54%</small>
+								</div>
+								<div class="progress progress-striped">
+									<div class="progress-bar progress-bar-success" style="width:54%"></div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="clearfix">
+									<span class="pull-left">Database Migration</span>
+									<small class="pull-right text-muted">23%</small>
+								</div>
+								<div class="progress">
+									<div class="progress-bar progress-bar-warning" style="width:23%"></div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								Unit Testing
+								<div class="progress progress-striped active">
+									<div class="progress-bar progress-bar-danger " style="width:92%">92%</div>
+								</div>
+							</a>
+						</li>
+						<li><a href="#">View all tasks</a></li>					  
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						<i class="icon-bell icon-large"></i>
+						<span class="notification-label">5</span>
+					</a>
+					<ul class="dropdown-menu notification dropdown-3">
+						<li><a href="#">You have 5 new notifications</a></li>					  
+						<li>
+							<a href="#">
+								<span class="notification-icon bg-warning">
+									<i class="icon-warning-sign"></i>
+								</span>
+								<span class="m-left-5">Server #2 not responding.</span>
+								<span class="time text-muted">Just now</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="notification-icon bg-success">
+									<i class="icon-plus"></i>
+								</span>
+								<span class="m-left-5">New user registration.</span>
+								<span class="time text-muted">2m ago</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="notification-icon bg-danger">
+									<i class="icon-bolt"></i>
+								</span>
+								<span class="m-left-5">Application error.</span>
+								<span class="time text-muted">5m ago</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="notification-icon bg-success">
+									<i class="icon-usd"></i>
+								</span>
+								<span class="m-left-5">2 items sold.</span>
+								<span class="time text-muted">1hr ago</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="notification-icon bg-success">
+									<i class="icon-plus"></i>
+								</span>
+								<span class="m-left-5">New user registration.</span>
+								<span class="time text-muted">1hr ago</span>
+							</a>
+						</li>
+						<li><a href="#">View all notifications</a></li>					  
+					</ul>
+				</li>
+				<li class="profile dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						<strong>John Doe</strong>
+						<span><i class="icon-chevron-down"></i></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a class="clearfix" href="#">
+								<img src="img/user.jpg" alt="User Avatar">
+								<div class="detail">
+									<strong>John Doe</strong>
+									<p class="grey">John_Doe@email.com</p> 
+								</div>
+							</a>
+						</li>
+						<li><a tabindex="-1" href="profile.html" class="main-link"><i class="icon-edit icon-large"></i> Edit profile</a></li>
+						<li><a tabindex="-1" href="gallery.html" class="main-link"><i class="icon-picture icon-large"></i> Photo Gallery</a></li>
+						<li><a tabindex="-1" href="#" class="theme-setting"><i class="icon-cog icon-large"></i> Setting</a></li>
+						<li class="divider"></li>
+						<li><a tabindex="-1" href="login.html" class="main-link"><i class="icon-lock icon-large"></i> Log out</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div><!-- /top-nav-->
+		
+		<aside class="fixed">
+			<div class="brand">
+				<span>Endless</span>
+				<span class="text-toggle"> Admin</span>
+			</div><!-- /brand -->		
+			<div class="sidebar-inner">
+				<div class="size-toggle">
+					<a class="btn btn-sm" id="sizeToggle">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+					<a class="btn btn-sm pull-right" href="login.html">
+						<i class="icon-off"></i>
+					</a>
+				</div><!-- /size-toggle -->	
+				<div class="user-block clearfix">
+					<img src="img/user.jpg" alt="User Avatar">
+					<div class="detail">
+						<strong>John Doe</strong><span class="badge badge-danger m-left-5">4</span>
+						<ul class="list-inline">
+							<li><a href="profile.html">Profile</a></li>
+							<li><a href="inbox.html" class="no-margin">Inbox</a></li>
+						</ul>
+					</div>
+				</div><!-- /user-block -->
+				<div class="search-block">
+					<div class="input-group">
+						<input type="text" class="form-control input-sm" placeholder="search here...">
+						<span class="input-group-btn">
+							<button class="btn btn-default btn-sm" type="button"><i class="icon-search"></i></button>
+						</span>
+					</div><!-- /input-group -->
+				</div><!-- /search-block -->
+				<div class="main-menu">
+					<ul>
+						<li>
+							<a href="index.html">
+								<span class="menu-icon">
+									<i class="icon-desktop icon-large"></i> 
+								</span>
+								<span class="text">
+									Dashboard
+								</span>
+								<span class="menu-hover"></span>
+							</a>
+						</li>
+						<li class="active">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<span class="menu-icon">
+									<i class="icon-beaker icon-large"></i> 
+								</span>
+								<span class="text">
+									Component
+								</span>
+								<span class="badge pull-right">9</span>
+								<span class="menu-hover"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="ui_element.html">
+										UI Features
+									</a>
+								</li>
+								<li>
+									<a href="button.html">
+										Button & Icons
+									</a>
+								</li>
+								<li>
+									<a href="tab.html">
+										Tab
+									</a>
+								</li>
+								<li>
+									<a href="nestable_list.html">
+										Nestable List
+									</a>
+								</li>
+								<li>
+									<a href="calendar.html">
+										Calendar
+									</a>
+								</li>
+								<li>
+									<a href="table.html">
+										Table
+									</a>
+								</li>
+								<li>
+									<a href="widget.html">
+										Widget
+									</a>
+								</li>
+								<li>
+									<a href="form_element.html">
+										Form Element
+									</a>
+								</li>
+								<li>
+									<a href="form_wizard.html">
+										Form Wizard
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">
+								<span class="menu-icon">
+									<i class="icon-file-text icon-large"></i> 
+								</span>
+								<span class="text">
+									Page
+								</span>
+								<span class="menu-hover"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="login.html">
+										Sign in
+									</a>
+								</li>
+								<li>
+									<a href="register.html">
+										Sign up
+									</a>
+								</li>
+								<li>
+									<a href="profile.html">
+										Profile
+									</a>
+								</li>
+								<li>
+									<a href="blog.html">
+										Blog
+									</a>
+								</li>
+								<li>
+									<a href="single_post.html">
+										Single Post
+									</a>
+								</li>
+								<li>
+									<a href="pricing.html">
+										Priciing table
+									</a>
+								</li>
+								<li>
+									<a href="invoice.html">
+										Invoice
+									</a>
+								</li>
+								<li>
+									<a href="error404.html">
+										Error 404
+									</a>
+								</li>
+								<li>
+									<a href="blank.html">
+										Blank
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="timeline.html">
+								<span class="menu-icon">
+									<i class="icon-time icon-large"></i> 
+								</span>
+								<span class="text">
+									Timeline
+								</span>
+								<span class="menu-hover"></span>
+							</a>
+						</li>
+						<li>
+							<a href="gallery.html">
+								<span class="menu-icon">
+									<i class="icon-picture icon-large"></i> 
+								</span>
+								<span class="text">
+									Gallery
+								</span>
+								<span class="menu-hover"></span>
+							</a>
+						</li>
+						<li>
+							<a href="inbox.html">
+								<span class="menu-icon">
+									<i class="icon-envelope icon-large"></i> 
+								</span>
+								<span class="text">
+									Inbox
+								</span>
+								<span class="badge badge-danger pull-right">4</span>
+								<span class="menu-hover"></span>
+							</a>
+						</li>
+						<li>
+							<a href="contact.html">
+								<span class="menu-icon">
+									<i class="icon-phone icon-large"></i> 
+								</span>
+								<span class="text">
+									Contact
+								</span>
+								<span class="menu-hover"></span>
+							</a>
+						</li>
+					</ul>
+					
+					<div class="alert alert-info">
+						Welcome to Endless Admin.Do not forget to check all my pages. 
+					</div>
+				</div><!-- /main-menu -->
+			</div><!-- /sidebar-inner -->
+		</aside>
+
+		<div id="main-container">
+			<div class="padding-20">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="panel panel-default">
+							<form class="form-horizontal form-border no-margin" id="basic-constraint" data-validate="parsley" novalidate>
+								<div class="panel-heading">
+									Basic Constraints
+								</div>
+								<div class="panel-body">
+									<div class="form-group">
+										<label class="control-label col-lg-3">Required</label>
+										<div class="col-lg-9">
+											<input type="text" class="form-control input-sm" data-required="true" placeholder="Required Field">
+											<div class="seperator"></div>
+											<label class="label-checkbox inline">
+												<input type="checkbox" data-required="true" name="chk-demo">
+												<span class="custom-checkbox"></span>
+												Checkbox
+											</label>
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+									<div class="form-group">
+										<label class="control-label col-lg-3">Min Length</label>
+										<div class="col-lg-9">
+											<input type="text" class="form-control input-sm" data-minlength="6" placeholder="minlenght = 6">
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+									<div class="form-group">
+										<label class="control-label col-lg-3">Max Length</label>
+										<div class="col-lg-9">
+											<input type="text" class="form-control input-sm" data-maxlength="6" placeholder="maxlenght = 6">
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+									<div class="form-group">
+										<label class="control-label col-lg-3">Range Length</label>
+										<div class="col-lg-9">
+											<input type="text" class="form-control input-sm" data-rangelength="[5,10]" placeholder="rangelength = [5,10]">
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+									<div class="form-group">
+										<label class="control-label col-lg-3">Min (number)</label>
+										<div class="col-lg-9">
+											<input type="text" class="form-control input-sm" data-min="6" placeholder="Min = 6">
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+									<div class="form-group">
+										<label class="control-label col-lg-3">Max (number)</label>
+										<div class="col-lg-9">
+											<input type="text" class="form-control input-sm" data-max="100" placeholder="Max = 100">
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+									<div class="form-group">
+										<label class="control-label col-lg-3">Range (number)</label>
+										<div class="col-lg-9">
+											<input type="text" class="form-control input-sm" data-range="[6, 100]" placeholder="range = [6,100]">
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+									<div class="form-group">
+										<label class="control-label col-lg-3">Equal To</label>
+										<div class="col-lg-9">
+											<input type="password" placeholder="Password" class="form-control input-sm" id="textbox1">
+											<div class="seperator"></div>
+											<input type="password" placeholder="Confirm Password" class="form-control input-sm" data-equalto="#textbox1">
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+								</div>
+								<div class="panel-footer">
+									<button type="submit" class="btn btn-success">Submit</button>
+								</div>
+							</form>
+						</div><!-- /panel -->
+					</div><!-- /.col-->
+					<div class="col-md-6">
+						<div class="panel panel-default">
+							<form class="form-horizontal form-border no-margin" id="type-constraint" data-validate="parsley" novalidate>
+								<div class="panel-heading">
+									Type Constraints
+								</div>
+								<div class="panel-body">
+									<div class="form-group">
+										<label class="control-label col-lg-3">Email</label>
+										<div class="col-lg-9">
+											<input type="text" class="form-control input-sm" data-type="email" placeholder="Email Address">
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+									<div class="form-group">
+										<label class="control-label col-lg-3">Url</label>
+										<div class="col-lg-9">
+											<input type="text" class="form-control input-sm" data-type="url" placeholder="Url">
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+									<div class="form-group">
+										<label class="control-label col-lg-3">Url Strict</label>
+										<div class="col-lg-9">
+											<input type="text" class="form-control input-sm" data-type="urlstrict" placeholder="http://yourSite.com">
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+									<div class="form-group">
+										<label class="control-label col-lg-3">Digits</label>
+										<div class="col-lg-9">
+											<input type="text" class="form-control input-sm" data-type="digits" placeholder="Digits">
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+									<div class="form-group">
+										<label class="control-label col-lg-3">Number</label>
+										<div class="col-lg-9">
+											<input type="text" class="form-control input-sm" data-type="number" placeholder="Number">
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+									<div class="form-group">
+										<label class="control-label col-lg-3">Alphanum</label>
+										<div class="col-lg-9">
+											<input type="text" class="form-control input-sm" data-type="alphanum" placeholder="alphanumeric string">
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+									<div class="form-group">
+										<label class="control-label col-lg-3">Min Words</label>
+										<div class="col-lg-9">
+											<input type="text" class="form-control input-sm" data-minwords="6" placeholder="Min = 6 words">
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+									<div class="form-group">
+										<label class="control-label col-lg-3">Max Words</label>
+										<div class="col-lg-9">
+											<input type="text" class="form-control input-sm" data-maxwords="6" placeholder="Max = 6 words">
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+									<div class="form-group">
+										<label class="control-label col-lg-3">Date Iso</label>
+										<div class="col-lg-9">
+											<input type="text" class="form-control input-sm" data-type="dateIso" placeholder="YYYY-MM-DD">
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+									<div class="form-group">
+										<label class="control-label col-lg-3">Phone</label>
+										<div class="col-lg-9">
+											<input type="text" class="form-control input-sm" data-type="phone" placeholder="(XXX) XXXX XXX">
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+								</div>
+								<div class="panel-footer">
+									<button type="submit" class="btn btn-success">Submit</button>
+								</div>
+							</form>
+						</div><!-- /panel -->
+					</div><!-- /.col-->
+				</div><!-- /.row -->
+				<div class="row">
+					<div class="col-md-6">
+						<div class="panel panel-default">
+							<form class="no-margin" id="formValidate1" data-validate="parsley" novalidate>
+								<div class="panel-heading">
+									Validation Example1
+								</div>
+								<div class="panel-body">
+									<div class="form-group">
+										<label class="control-label">Username</label>
+										<input type="text" placeholder="Username" class="form-control input-sm" data-required="true" data-minlength="8">
+									</div><!-- /form-group -->
+										
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label">Password</label>
+												<input type="password" placeholder="Password" class="form-control input-sm" id="password" data-required="true" data-minlength="8">
+											</div><!-- /form-group -->
+										</div><!-- /.col -->
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label">Confirm Password</label>
+												<input type="password" placeholder="Confirm Password" class="form-control input-sm" data-equalto="#password" data-required="true">
+											</div><!-- /form-group -->
+										</div><!-- /.col -->
+									</div><!-- /.row -->
+									
+									<div class="form-group">
+										<label class="control-label">Email</label>
+										<input type="text" class="form-control input-sm" placeholder="test@example.com" data-required="true" data-type="email">
+									</div><!-- /form-group -->	
+									<div class="form-group">
+										<label class="label-checkbox inline">
+											<input type="checkbox" name="agreement" data-required="true">
+											<span class="custom-checkbox"></span>
+											I accept the user agreement
+										</label>
+									</div><!-- /form-group -->
+								</div>
+								<div class="panel-footer text-right">
+									<button type="submit" class="btn btn-success">Submit</button>
+								</div>
+							</form>
+						</div><!-- /panel -->
+					</div><!-- /.col-->
+					<div class="col-md-6">
+						<div class="panel panel-default">
+							<form class="no-margin" id="formValidate2" data-validate="parsley" novalidate>
+								<div class="panel-heading">
+									Validation Example2
+								</div>
+								<div class="panel-body">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label">Company</label>
+												<input type="text" placeholder="Your Company" class="form-control input-sm" data-required="true">
+											</div>
+										</div><!-- /.col -->
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label">Website</label>
+												<input type="text" placeholder="Your Website" class="form-control input-sm" data-required="true" data-type="url">
+											</div>
+										</div><!-- /.col -->
+									</div><!-- /.row -->
+									
+									<div class="form-group">
+										<label class="control-label">Email</label>
+										<input type="text" placeholder="Email Address" class="form-control input-sm" data-required="true" data-type="email">
+									</div><!-- /form-group -->
+									<div class="form-group">
+										<label class="control-label">Message</label>
+										<textarea class="form-control" placeholder="Your message here..." rows="3" data-required="true"></textarea>
+									</div><!-- /form-group -->	
+								</div>
+								<div class="panel-footer text-right">
+									<button class="btn btn-success" type="submit">Send</button>
+									<button class="btn btn-success" type="reset">Clear</button>
+								</div>
+							</form>
+						</div><!-- /panel -->
+					</div><!-- /.col-->
+				</div><!-- /.row -->
+				
+				<hr>
+				<div class="panel panel-default">
+					<form class="form-horizontal no-margin form-border" id="formWizard1" novalidate>
+						<div class="panel-heading">
+							Form Wizard
+						</div>
+						<div class="panel-tab">
+							<ul class="wizard-steps wizard-demo" id="wizardDemo1"> 
+								<li class="active">
+									<a href="#wizardContent1" data-toggle="tab">Step 1</a>
+								</li> 
+								<li>
+									<a href="#wizardContent2" data-toggle="tab">Step 2</a>
+								</li> 
+								<li>
+									<a href="#wizardContent3" data-toggle="tab">Step 3</a>
+								</li>
+							</ul>
+						</div>
+							
+						<div class="panel-body">
+							<div class="tab-content">
+								<div class="tab-pane fade in active" id="wizardContent1">
+									<div class="form-group">
+										<label class="control-label col-lg-2">Username</label>
+										<div class="col-lg-6">
+											<input type="text" placeholder="Normal text input" class="form-control input-sm" data-required="true">
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+									<div class="form-group">
+										<label class="control-label col-lg-2">Password</label>
+										<div class="col-lg-6">
+											  <input type="password" placeholder="Password" class="form-control input-sm" data-required="true">
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+									<div class="form-group">
+										<label class="control-label col-lg-2">Email</label>
+										<div class="col-lg-6">
+											<input type="text" class="form-control input-sm" placeholder="test@example.com" data-required="true" data-type="email">
+										</div><!-- /.col -->
+									</div><!-- /form-group -->		
+								</div>
+								<div class="tab-pane fade" id="wizardContent2">
+									<div class="form-group">
+										<label class="control-label col-lg-2">Phone</label>
+										<div class="col-lg-6">
+											<input type="text" class="form-control input-sm" placeholder="(XXX) XXXX XXX" data-required="true" data-type="phone">
+										</div><!-- /.col -->
+									</div><!-- /form-group -->		
+									<div class="form-group">
+										<label class="control-label col-lg-2">Website</label>
+										<div class="col-lg-6">
+											<input type="text" class="form-control input-sm" placeholder="Website url" data-required="true" data-type="urlstrict">
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+								</div>
+								<div class="tab-pane fade padding-20" id="wizardContent3">
+									<h4>Finish!</h4>
+								</div>
+							</div>
+						</div>
+						<div class="panel-footer clearfix">
+							<div class="pull-left">
+								<button class="btn btn-success btn-sm disabled" id="prevStep1" disabled>Previous</button>
+								<button type="submit" class="btn btn-sm btn-success" id="nextStep1">Next</button>
+							</div>
+
+							<div class="pull-right" style="width:30%">
+								<div class="progress progress-striped active m-top-10 m-bottom-none">
+									<div class="progress-bar progress-bar-success" id="wizardProgress" style="width:33%;">
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div><!-- /panel -->
+				
+				<div class="panel panel-default">
+					<form class="form-horizontal no-margin form-border" id="formWizard2" novalidate>
+						<div class="panel-tab clearfix">
+							<ul class="tab-bar wizard-demo" id="wizardDemo2">
+								<li class="active"><a href="#first" data-toggle="tab"><i class="icon-home"></i> First</a></li>
+								<li><a href="#second" data-toggle="tab"><i class="icon-pencil"></i> Second</a></li>
+								<li><a href="#third" data-toggle="tab"><i class="icon-briefcase"></i> Third</a></li>
+								<li><a href="#fourth" data-toggle="tab"><i class="icon-ok"></i> Fourth</a></li>
+							</ul>
+						</div>
+						<div class="panel-body">
+							<div class="tab-content">
+								<div class="tab-pane fade in active" id="first">	
+									<div class="form-group">
+										<label class="control-label col-lg-2">Company</label>
+										<div class="col-lg-6">
+											<input type="text" placeholder="Company name..." class="form-control input-sm" data-required="true">
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+								</div>
+								<div class="tab-pane fade" id="second">
+									<div class="form-group">
+										<label class="control-label col-lg-2">Website</label>
+										<div class="col-lg-6">
+											<input type="text" placeholder="Website Url..." class="form-control input-sm" data-required="true" data-type="urlstrict">
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+								</div>
+								<div class="tab-pane fade" id="third">
+									<div class="form-group">
+										<label class="control-label col-lg-2">Your Name</label>
+										<div class="col-lg-6">
+											<input type="text" placeholder="Your name..." class="form-control input-sm" data-required="true">
+										</div><!-- /.col -->
+									</div><!-- /form-group -->
+								</div>
+								<div class="tab-pane fade" id="fourth">
+									<h4>Finish!</h4>
+								</div>
+							</div>
+						</div>
+						<div class="panel-footer text-right">
+							<button class="btn btn-success btn-sm disabled" id="prevStep2" disabled>Previous</button>
+							<button type="submit" class="btn btn-sm btn-success" id="nextStep2">Next</button>
+						</div>
+					</form>
+				</div><!-- /panel -->
+			</div><!-- /.padding-20 -->
+		</div><!-- /main-container -->
+	</div><!-- /wrapper -->
+
+	<a href="" id="scroll-to-top" class="hidden-print"><i class="icon-chevron-up"></i></a>
+	
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	
+	<!-- Jquery -->
+	<script src="bootstrap/assets/js/jquery.js"></script>
+	
+	<!-- Bootstrap -->
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bootstrap/assets/js/holder.js"></script>
+    <script src="bootstrap/assets/js/application.js"></script>
+	
+	<!-- Colorpicker -->
+	<script src='js/jquery.minicolors.min.js'></script>	
+
+	<!-- Colorbox -->
+	<script src='js/jquery.colorbox.min.js'></script>	
+	
+	<!-- Parsley -->
+	<script src="js/parsley.min.js"></script>
+	
+	<!-- Cookie -->
+	<script src='js/jquery.cookie.min.js'></script>
+
+	<!-- Endless -->
+	<script src="js/endless/endless_wizard.js"></script>
+	<script src="js/endless/endless.js"></script>
+	
+  </body>
+</html>

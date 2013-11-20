@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <title></title>
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/app.js"></script>
+</head>
+<body style="background-color: #e5e5e5;height: 100%;margin-top: 30px" ng-controller="AppListCtrl">
+<div class="container">
+    <div class="status_text">{{statusText}}</div>
+    <div class="row col-md-4" ng-repeat="client in clients">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{client.id}}</h3>
+            </div>
+            <div class="panel-body">
+                <div ng-repeat="app in client.apps">
+                    <div><span class="badge">{{app.version_code}}</span>&nbsp;{{app.name}}</div>
+                </div>
+                <div style="text-align: center">{{client.lastHeartBeatTime | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
