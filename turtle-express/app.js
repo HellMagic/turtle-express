@@ -29,9 +29,9 @@ var APP_BASE = 'app'
     , am = AM.init(APP_BASE, DOWNLOAD_BASE)
     , udm = UDM.init(USERDATA_BASE)
     , SERVICE_ID_FILE = 'service_info'
-    , HEARTBEAT_INTERVAL = 5 * 1000
-//    , TURTLE_DIRECTORY_HOST = 'cloud.sunshine-library.org'
-    , TURTLE_DIRECTORY_HOST = '127.0.0.1'
+    , HEARTBEAT_INTERVAL = 10 * 1000
+    , TURTLE_DIRECTORY_HOST = 'cloud.sunshine-library.org'
+//    , TURTLE_DIRECTORY_HOST = '127.0.0.1'
     , TURTLE_DIRECTORY_PORT = 9460;
 
 var app = express()
