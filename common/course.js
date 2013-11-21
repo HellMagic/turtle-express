@@ -135,6 +135,8 @@ exports.parseLesson = function (chapterFolder, lessonFolder) {
         };
         if (_(material).endsWith('.pdf')) {
             materials[material].id = materials[material].id + '.pdf';
+        } else if (_(material).endsWith('.mp3')) {
+            materials[material].id = materials[material].id + '.mp3';
         }
     })
     lesson.materials = materials;
