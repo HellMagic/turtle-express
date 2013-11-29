@@ -31,7 +31,7 @@ app.get('/course', function (req, res) {
     console.log('parse chapter,%s', chapterFolder);
     var chapter = course.parseChapter(chapterFolder);
     course.exportChapter(subject, chapter, "out");
-    res.send(chapter);
+    res.send(chapter.id);
 });
 
 http.createServer(app).listen(app.get('port'), function () {
